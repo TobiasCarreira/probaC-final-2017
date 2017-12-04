@@ -2,10 +2,40 @@
 \begin{enumerate}
 	\setcounter{enumi}{5}
 	\item
+		Sea E = la persona está enferma, y V = la persona está vacunada.
+		La probabilidad pedida es $P(\overline V | E)$.
+		$$P(\overline V | E) = \frac{P(\overline V \land E)}{P(E)} = \frac{0.13}{0.13+0.02} = \frac{13}{15}$$
 	\item
+		Asumimos que la probabilidad de que un hijo cualquiera sea varón es de $\frac{1}{2}$.
+		Sea $V_1$ = el primer hijo es varón, y $V_2$ = el segundo hijo es varón.
+		La probabilidad pedida es
+		$$P(V_2|V_1) = \frac{P(V_1 \land V_2)}{P(V_1)} = \frac{1/4}{1/2} = \frac{1}{2}$$
 	\item
+		Dadas las mismas suposiciones, la probabilidad pedida es:
+		$$P(V_1 \land V_2|V_1 \lor V_2) = \frac{P(V_1 \land V_2)}{P(V_1 \lor V_2)} = \frac{1/4}{1-1/4} = \frac{1}{3}$$
 	\item
+		Notamos cada caso como una tupla de dos letras (M o V), y ponemos un asterisco antes de la letra del hijo que abrió la puerta.
+		
+		Los casos posibles (que corresponden al evento en que abre la puerta un varón) son: $\{(V*V), (*VV), (*VM), (M*V)\}$.
+		
+		De estos, los favorables son los dos primeros (que corresponden al evento en que hay dos hijos varones). Por lo tanto la probabilidad es $\frac{2}{4} = \frac{1}{2}$.
 	\item
+		Sea $B_k = A_1A_2\cdots A_k$. Notar que $B_k = A_k B_{k-1}$ para $k>1$.
+		
+		Los voy a demostrar por inducción en $n$. La propiedad se puede enunciar como $$P(B_n) = P(A_1) P(A_2|B_1) \cdots P(A_n|B_{n-1})$$
+		
+		Caso base: $B_1 = A_1$. Esto ocurre por definición.
+		
+		Paso inductivo: vale la propiedad hasta $B_{n-1}$ y quiero demostrarla para $B_n$.
+		
+		$$P(A_n | B_{n-1}) = \frac{P(A_n B_{n-1})}{P(B_{n-1})} = \frac{P(B_n)}{P(B_{n-1})}$$
+		$$P(B_n) = P(B_{n-1}) P(A_n | B_{n-1})$$
+		
+		Pero por HI, $$P(B_{n-1}) = P(A_1) P(A_2|B_1) \cdots P(A_{n-1}|B_{n-2})$$
+		Luego tenemos
+		$$P(B_n) = (P(A_1) P(A_2|B_1) \cdots P(A_{n-1}|B_{n-2})) P(A_n | B_{n-1})$$
+		$$P(B_n) = P(A_1) P(A_2|B_1) \cdots P(A_n|B_{n-1})$$
+		Q.E.D.
 	\item
 	\item
 	\item
