@@ -1,0 +1,19 @@
+\section{Coupon collector}
+\begin{enumerate}
+	\setcounter{enumi}{130}
+	\item
+		Voy a asumir que empiezo a contar desde 0 y no desde 1 porque me hace feliz, y los índices quedan más lindos.
+	
+		Primero, $T_i $ es el número de intentos hasta el primer éxito (encontrar un elemento nuevo), con una probabilidad de éxito de:
+		$$\frac{\text{elementos nuevos}}{\text{elementos totales}} = \frac{n-i}{n}$$ Además, las $T_i$ son independientes.
+		
+		En particular, $T_0$ (el tiempo hasta el primer elemento) tiene una probabilidad de éxito de 1.
+		
+		Esta definición de $T_i$ quiere decir que $T_i \sim G(\frac{n-i}{n})$. Por esta razón, $E(T_i) = \frac{n}{n-i}$. 		
+		$$E(T) = \sum_{i=0}^{n-1}E(T_i)$$
+		$$E(T) = \sum_{i=0}^{n-1} \frac{n}{n-i}$$
+		$$E(T) = n \cdot \sum_{i=0}^{n-1} \frac{1}{n-i}$$
+		$$E(T) = n \cdot \sum_{i=1}^{n} \frac{1}{i}$$
+		
+		FALTA TERMINAR
+\end{enumerate}
