@@ -1,0 +1,49 @@
+\section{Funciones Generadoras de Momentos}
+\begin{enumerate}
+	\setcounter{enumi}{77}
+	\item
+		Quiero ver que $$M_{X_1+X_2+\cdots +X_n}(t) = \prod_{i=1}^n M_{X_i}(t)$$
+		
+		Como las $X_i$ son independientes, tenemos que
+		$$M_{X_1+X_2+\cdots +X_n}(t) = E(e^{t\sum_{i=1}^n X_i}) = E(\prod_{i=1}^n e^{tX_i}) = \prod_{i=1}^n E(e^{tX_i}) = \prod_{i=1}^n M_{X_i}(t)$$
+		
+	\item
+		$$M_{aX+b}(t) = E(e^{atX+bt}) = E(e^{atX})\cdot E(e^{bt}) = E(e^{atX})\cdot e^{bt} = M_{X}(at)\cdot e^{bt}$$
+		$E(e^{bt}) = e^{bt}$  porque $e^{bt}$ es una constante.
+		
+	\item
+		Quiero calcular $M_X(t) = E(e^{tX})$ para $X\sim N(0,1)$.
+		
+		$$E(e^{tX}) = \int_{-\infty}^{+\infty}e^{tX}\cdot f_X(x) dX = \int_{-\infty}^{+\infty}e^{tX}\cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{X^2}{2}} dX$$
+		$$ = \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}} e^{tX-\frac{X^2}{2}} dX$$
+		
+		Ahora multiplico y divido por $e^{-\frac{t^2}{2}}$ para completar a una normal:
+		
+		$$ = e^{\frac{t^2}{2}} \cdot \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}} e^{tX-\frac{X^2}{2}} \cdot e^{-\frac{t^2}{2}} dX$$
+		$$ = e^{\frac{t^2}{2}} \cdot \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(X^2 - 2tX + t^2)} dX
+		= e^{\frac{t^2}{2}} \cdot \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}} e^{-\frac{(X-t)^2}{2}} dX$$
+		
+		Notamos que lo que está adentro de la integral es $f_X(x)$ si $X\sim N(t, 1)$. Por lo tanto integra a 1 :) y la FGM de la normal es:
+		$$M_X(t) = e^{\frac{t^2}{2}}$$
+		
+	\item
+		Sea $X \sim P(\lambda)$.
+		
+		$$M_X(t) = E(e^{tX}) = \sum_{k=0}^{\infty}e^{tk}\cdot\frac{e^{-\lambda}\cdot \lambda^k}{k!}
+		= e^{-\lambda} \sum_{k=0}^{\infty}\frac{e^{tk}\lambda^k}{k!} = e^{-\lambda} \sum_{k=0}^{\infty}\frac{(e^t\lambda)^k}{k!}$$
+		
+		Ahora, sabemos que $\sum_{i=0}^n \frac{x^i}{i!} = e^x$ (se deriva de la f de la Poisson, de hecho).
+		
+		$$M_X(t) = e^{-\lambda} e^{e^t\lambda} = e^{e^t\lambda-\lambda} = e^{\lambda (e^t-1)}$$
+		
+		Ahora vamos a usar esto para calcular la FGM de una suma de Poissons.
+		Si da la FGM de una Poisson, para cierto $\lambda$, demostramos que la suma es $P(\lambda)$ por unicidad de la FGM.
+		
+		Sean $X_i \sim P(\lambda_i)$ VA independientes.
+		Como son independientes (por item 78):
+		
+		$$M_{\sum_{i=1}^n X_i}(t) = \prod_{i=1}^n M_{X_i}(t) = \prod_{i=1}^n e^{\lambda_i (e^t-1)} = e^{\sum_{i=1}^n \lambda_i (e^t-1)}
+		= e^{(e^t-1) \sum_{i=1}^n \lambda_i}$$
+		
+		Por lo tanto, $\sum_{i=1}^n X_i \sim P(\sum_{i=1}^n \lambda_i)$.
+\end{enumerate}
