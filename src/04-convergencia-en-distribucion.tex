@@ -1,0 +1,68 @@
+\section{Convergencia en Distribución}
+\begin{enumerate}
+	\setcounter{enumi}{25}
+	\item
+		Sea $S_n \sim \text{Bi}(n,\lambda /n)$.
+		
+		$$P(S_n = k) = \binom{n}{k} \left( \frac{\lambda}{n}\right) ^k \left(1- \frac{\lambda}{n}\right) ^{n-k}$$
+		
+		\begin{align*}
+			lim_{n\rightarrow \infty} P(S_n = k) & = lim_{n\rightarrow \infty} \binom{n}{k} \left( \frac{\lambda}{n}\right) ^k \left(1- \frac{\lambda}{n}\right) ^{n-k} \\
+			                                     & = lim_{n\rightarrow \infty} \binom{n}{k} \left( \frac{\lambda}{n}\right) ^k \left(1- \frac{\lambda}{n}\right) ^{n-k} \\
+			                                     & = \frac{\lambda^k}{k!} lim_{n\rightarrow \infty} \frac{n!}{(n-k)!} \left( \frac{1}{n}\right) ^k \left(1- \frac{\lambda}{n}\right) ^{n-k} \\
+			                                     & = \frac{\lambda^k}{k!} lim_{n\rightarrow \infty} \frac{n!}{(n-k)!n^k} \left(1- \frac{\lambda}{n}\right) ^{n-k} \\
+		\end{align*}
+		
+		Veamos ambos factores del límite por separado:
+		
+		\begin{align*}
+			lim_{n\rightarrow \infty} \frac{n!}{(n-k)!n^k} & = lim_{n\rightarrow \infty} \prod_{i=n-k}^n \frac{i}{n}
+			                                               & > lim_{n\rightarrow \infty} \prod_{i=n-k}^n \frac{n-k}{n} = 1
+		\end{align*}
+		
+		Como la expresión está acotada por 1, tiende a 1.
+		
+		\begin{align*}
+			lim_{n\rightarrow \infty} \left(1- \frac{\lambda}{n}\right) ^{n-k} & = lim_{n\rightarrow \infty} \left(1- \frac{\lambda}{n}\right) ^{\frac{n}{-\lambda}(n-k)\frac{-\lambda}{n}} \\
+			                                                                   & = e^{-\lambda}
+		\end{align*}
+		
+		Ponemos todo junto:
+		$$lim_{n\rightarrow \infty} P(S_n = k) = \frac{\lambda^k}{k!} \cdot 1 \cdot e^{-\lambda} = \frac{\lambda^k e^{-\lambda}}{k!}$$
+		
+		Que es la función de probabilidad puntual de la Poisson.
+		
+	\item
+		Sea $U_n \sim \text{Uniforme}\{\frac{1}{n}, \cdots, \frac{n}{n}\}$.
+		
+		Para cada par $n\in\mathbb{N}$, $k\in [0, 1]$,
+		sea $x_{n,k} \in \mathbb{N}$ el mayor número
+		tal que $\frac{x_{n,k}}{n} \leq k$.
+		
+		Como tenemos que: $$F_{U_n}(k) = \sum_{i=1}^{x_{n,k}} \frac{1}{n} = \frac{x_{n,k}}{n}$$
+		
+		Lo que queremos demostrar es que $x_{n,k}\rightarrow_{n\rightarrow\infty}k$, para que $U$ se vaya a una uniforme. Pero tenemos que dados $k$ y $n$,
+		$$0 \leq \left( k - \frac{x_{n,k}}{n}\right) \leq \frac{1}{n}$$
+		
+		Por lo que cuando $n\rightarrow\infty$, la expresión del medio se va a $0$. Finalmente $\frac{x_{n,k}}{n}\rightarrow_{n\rightarrow\infty}k$, como queríamos demostrar.
+		
+	\item
+		Sean $Y_n \sim \text{Geom}(\frac{\lambda}{n})$.
+		
+		Vamos a demostrar la convergencia para $P\left(\dfrac{Y_n}{n} > y\right)$ porque la cuenta queda fácil así.
+		
+		Para las geométricas:
+		$$P\left(\dfrac{Y_n}{n} > y\right) = P(Y_n > n\cdot y) = \left(1 - \frac{\lambda}{n}\right)^{ny}$$
+		
+		Queremos saber:
+		\begin{align*}
+			lim_{n\rightarrow\infty} \left(1 - \frac{\lambda}{n}\right)^{ny} & = lim_{n\rightarrow\infty} \left(1 + \frac{-\lambda}{n}\right)^{\frac{n}{-\lambda} \frac{-\lambda}{n} ny} \\
+			                                                                 & = lim_{n\rightarrow\infty} \left(1 + \frac{-\lambda}{n}\right)^{\frac{n}{-\lambda} (-\lambda y)}          \\
+			                                                                 & = e^{-\lambda y}
+		\end{align*}
+		
+		Con lo que $F_{\frac{Y}{n}}(y) = 1 - P\left(\frac{Y}{n} > y\right) = 1 - e^{-\lambda y}$, que es la $F$ de una V.A. exponencial.
+		
+	\item
+		Sea $X_n = c + \frac{1}{n}$. Por un lado, $X_n > c$ siempre con lo que $F_{X_n}(c) = 0$. Por otro es claro que $X_n \rightarrow c$.
+\end{enumerate}

@@ -1,0 +1,106 @@
+\section{Vectores Aleatorios}
+\begin{enumerate}
+	\setcounter{enumi}{29}
+	\item
+		PREGUNTAR
+	\item
+		Sean $Z_1$ y $Z_2$ constantes de normalización de $f_{X_1}$ y $f_{X_2}$ respectivamente. $Z = Z_1\cdot Z_2$.
+		$$P(X_1 = x_1 \land X_2 = x_2) = \frac{1}{Z}a^{x_1+x_2} = \frac{1}{Z_1}a^{x_1}\cdot \frac{1}{Z_2}a^{x_2}$$
+		
+		Por otro lado,
+		\begin{align*}
+			P(X_1 = x_1) & = \sum_{x_2 = 1}^{\infty} \frac{1}{Z_1}a^{x_1}\cdot \frac{1}{Z_2}a^{x_2} \\
+			             & = \frac{1}{Z_1}a^{x_1} \sum_{x_2 = 1}^{\infty} \frac{1}{Z_2}a^{x_2} \\
+			             & = \frac{1}{Z_1}a^{x_1} \cdot 1 \\
+		\end{align*}
+		(vale 1 porque es la sumatoria sobre toda la densidad de $X_2$).
+		
+		Análogamente, $P(X_2 = x_2) = \frac{1}{Z_2}a^{x_2}$. Como el producto de las densidades da la densidad conjunta, son independientes.
+		
+	\item
+		$$P(X_1 \geq x_1 \land X_2 \geq x_2)	& = a^{x_1 + x_2} $$
+		$$P(X_1 \geq x_1) = P(X_1 \geq x_1 \land X_2 \geq 0) = a^{x_1}$$
+		
+		Análogamente $P(X_2 \geq x_2) = a^{x_2}$.
+		
+	\item \hfill 
+		\begin{itemize}				
+			\item[($1\Rightarrow 2$)]
+				Es fácil porque se define $g(x) = f_X(x)$ y $h(y) = f_Y(y)$.
+			
+			\item[($1\Rightarrow 3$)]
+				Es lo mismo que el anterior, se define $G(x) = F_X(x)$ y $H(y) = F_Y(y)$.
+				
+			\item[($2\Rightarrow 1$)]
+				\begin{align*}				
+					f_{X,Y}(x,y)		& = g(x)h(y)			\\
+					\int f_{X,Y}(x,y)dy	& = \int g(x)h(y) dy	\\
+					f_X(x)				& = g(x) \int h(y) dy
+				\end{align*}
+				
+				Es decir que $g(x) = C_x\cdot f_X(x)$ donde $C_x$ es una constante.
+				
+				Análogamente $h(y) = C_y\cdot f_Y(y)$ con $C_y$ constante.
+				
+				Entonces:
+				$$f_{X,Y}(x,y) = C_xC_yf_X(x)f_Y(y)$$
+				
+				Y la constante vale 1 porque si integramos de los dos lados, $f_{X,Y}(x,y)$, $f_X(x)$ y $f_Y(y)$ son todas densidades e integran a 1.
+				
+				Finalmente $f_{X,Y}(x,y) = f_X(x)f_Y(y)$, con lo que son independientes.
+				
+			\item[($3\Rightarrow 2$)]
+				\begin{align*}
+					F_{X,Y}(x,y)									& = G(x)H(y)	\\
+					\frac{\delta F_{X,Y}(x,y)}{\delta x}			& = G'(x)H(y)	\\
+					\frac{\delta^2 F_{X,Y}(x,y)}{\delta x \delta y}	& = G'(x)H'(y)	\\
+					f_{X,Y}(x,y)									& = G'(x)H'(y)
+				\end{align*}
+				
+				Entonces basta definir $g(x) = G'(x)$ y $h(y) = H'(y)$ para demostrar (2).
+		\end{itemize}
+		
+	\item
+		$x_1 \cdots x_n \cdots \geq 0$ independientes con media $\mu$.
+		
+		Sea $N \in \{1\cdots k\}$ (supongo que equiprobable) independiente de todos los $x_i$.
+		
+		\begin{align*}
+			E(\prod_{i=1}^N x_i)	& = \sum_{n=1}^k \frac{1}{k}E(\prod_{i=1}^n x_i) \\
+									& = \frac{\sum_{n=1}^k \prod_{i=1}^n E(x_i)}{k} \\
+									& = \frac{\sum_{n=1}^k (\mu ^n)}{k} \\
+									& = \frac{\mu^{k+1} - 1}{(\mu - 1)k} \\
+		\end{align*}
+		
+		En el primer paso, hago suma sobre todos los casos para $N$, por la probabilidad de cada uno (que es $\frac{1}{k}$). Puedo sacar la productoria para afuera en el paso 2 por linealidad de la esperanza.
+		
+		El último paso es la resolución analítica de esa sumatoria.
+		
+	\item
+		$$P(R \leq a) = P(X^2 + Y^2 \leq a^2)$$
+		
+		Sean $r, \theta$ tales que $X = r\cdot sin(\theta)$ e $Y = r \cdot cos(\theta)$.
+		Tenemos que $r^2 = X^2 + Y^2$.
+		
+		$$P(R \leq a) = P(r^2 < a^2) = P(|r| < a)$$
+		suponiendo que $a > 0$.
+		
+		Quiero hallar:
+		$$\int\int_D \frac{1}{2\pi} e^{\frac{-(x^2 + y^2)}{2}} dy\text{ }dx$$
+		
+		para $D = \{(x, y) \in \mathbb{R}^2 : x^2 + y^2 \leq a^2\}$.		
+		
+		Esto es lo mismo que integrar sobre:
+		\begin{align*}
+			\int\int_D \frac{1}{2\pi} e^{\frac{-(x^2 + y^2)}{2}} dy\text{ }dx
+				& = \int_0^a\int_0^{2\pi} \frac{1}{2\pi} e^{\frac{-r^2}{2}} \cdot r d\theta\text{ }dr\\
+				& = \int_0^a \left(\frac{1}{2\pi} e^{\frac{-r^2}{2}} \cdot r\right) \cdot 2\pi\text{ }dr \\
+				& = \int_0^a (e^{\frac{-r^2}{2}} \cdot r) dr \\
+				& = -\int_0^a ((-r)\cdot e^{\frac{-r^2}{2}}) dr \\
+				& = -(e^{\frac{-a^2}{2}} -e^{\frac{-0^2}{2}}) \\
+				& = 1 - e^{\frac{-a^2}{2}}
+		\end{align*}
+	
+	\item
+		
+\end{enumerate}
