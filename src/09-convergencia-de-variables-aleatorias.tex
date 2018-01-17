@@ -1,0 +1,22 @@
+\section{Vectores Aleatorios}
+\begin{enumerate}
+	\setcounter{enumi}{72}
+	\item
+		Sea $\mathbb{I}_{[\epsilon, +\infty)}(X)$ la indicadora de $X\geq \epsilon$.
+		$$\mathbb{I}_{[\epsilon, +\infty)}(X)\cdot \epsilon \leq X$$
+		Porque si $X<\epsilon$ el lado izquierdo da $0$, y si no es obvio que $X\geq \epsilon$.
+		
+		Si tomamos esperanza a ambos lados, siendo que la esperanza de la indicadora es $P(X \geq \epsilon)$,
+		$$P(X\geq\epsilon) \cdot \epsilon \leq E(X) \Rightarrow P(X\geq\epsilon) \leq \frac{E(X)}{\epsilon}$$
+		
+		Si tomamos la VA $(X - E(X))^2$ (sabemos que es $\geq 0$), y reescribimos la constante como $\epsilon^2$,
+		\begin{align*}
+			P((X - E(X))^2 \geq\epsilon^2)	& \leq \frac{E((X - \mu)^2)}{\epsilon^2}	\\
+			P(|X - E(X)| \geq\epsilon)		& \leq \frac{V(X)}{\epsilon^2}
+		\end{align*}
+		
+		Que es la fórmula de Chebychev.
+		
+	\item
+		
+\end{enumerate}
