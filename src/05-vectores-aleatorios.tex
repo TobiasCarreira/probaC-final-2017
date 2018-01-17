@@ -18,8 +18,10 @@
 		Análogamente, $P(X_2 = x_2) = \frac{1}{Z_2}a^{x_2}$. Como el producto de las densidades da la densidad conjunta, son independientes.
 		
 	\item
-		$$P(X_1 \geq x_1 \land X_2 \geq x_2)	& = a^{x_1 + x_2} $$
-		$$P(X_1 \geq x_1) = P(X_1 \geq x_1 \land X_2 \geq 0) = a^{x_1}$$
+		\begin{align*}
+			P(X_1 \geq x_1 \land X_2 \geq x_2)	& = a^{x_1 + x_2}			\\
+			P(X_1 \geq x_1) = P(X_1 \geq x_1 \land X_2 \geq 0) = a^{x_1}
+		\end{align*}
 		
 		Análogamente $P(X_2 \geq x_2) = a^{x_2}$.
 		
@@ -102,5 +104,59 @@
 		\end{align*}
 	
 	\item
+		$$F_{X+Y}(z) = P(X+Y \leq z) = \int_{-\infty}^{+\infty} \int_{-\infty}^{z-x} f_{X,Y}(x, y)\text{ }dy\text{ }dx$$
+		Sean $u=x$, $v=x+y$:
+		\begin{align*}
+			F_{X+Y}(z)	& = \int_{-\infty}^{+\infty} \int_{-\infty}^{z} f_{X,Y}(u, v-u)\text{ }dv\text{ }du \\
+						& = \int_{-\infty}^{z} \left(\int_{-\infty}^{+\infty} f_{X,Y}(u, v-u)\text{ }du\right)\text{ }dv
+		\end{align*}
+		Luego, lo de adentro del paréntesis es la densidad. Entonces:
 		
+		$$f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_{X,Y}(u, z-u)\text{ }du$$
+		
+	\item
+		Si reemplazamos la densidad por el producto de las densidades en la anterior:
+		$$f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_{X}(u)f_Y(z-u)\text{ }du$$
+		
+	\item
+		Caso discreto:
+		\begin{align*}
+			P(g(X) = x' \land h(Y) = y')	& = \sum_{\{x:(g(x) = x')\}} \sum_{\{y:(h(y) = y')\}} P(X = x \land Y = y)	\\
+											& = \sum_{\{x:(g(x) = x')\}} \sum_{\{y:(h(y) = y')\}} P(X = x) P(Y = y)		\\
+											& = \left(\sum_{\{x:(g(x) = x')\}} P(X = x)\right) \left(\sum_{\{y:(h(y) = y')\}} P(Y = y)\right) \\
+											& = P(g(X) = x') P(h(Y) = y')
+		\end{align*}
+		
+		FALTA CASO CONTINUO PERO DEBE SER IGUAL, CON MENOR O IGUAL
+		
+	\item
+		Sale haciendo el gráfico $(X,Y)$ y pintando el área que sirve, viendo que la proba de que no se crucen es como integrar un cuadrado de $\frac{5}{6}$ de lado.
+		
+	\item
+		Sea $Y=aX+b$.
+		Supongamos primero que $a>0$.
+		
+		$$F_{aX+b}(y) = P(aX+b \leq y) = P\left(X \leq \frac{y-b}{a}\right) = F_X\left(\frac{y-b}{a}\right)$$
+		$$f_{aX+b}(y) = f_X\left(\frac{y-b}{a}\right)\frac{1}{a}$$
+		
+		Reemplazando en la densidad de la normal:
+		\begin{align*}
+			f_{aX+b}(y)	& = f_X\left(\frac{y-b}{a}\right)\frac{1}{a}																\\
+						& = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{\left(\frac{y-b}{a} - \mu\right)^2}{2\sigma^2}} \frac{1}{a}	\\
+						& = \frac{1}{\sqrt{2\pi \sigma^2 a^2}} e^{-\frac{\left(\frac{y-b-a\mu}{a}\right)^2}{2\sigma^2}}				\\
+						& = \frac{1}{\sqrt{2\pi (\sigma^2 a^2)}} e^{-\frac{y-(a\mu+b)}{2(\sigma^2a^2)}}
+		\end{align*}
+		
+		Con lo que $Y \sim N(a\mu + b, a^2\sigma^2)$.
+		
+		Para el caso negativo, la ecuación con la $F$ se da vuelta, con lo que la $f$ queda multiplicada por $-1$,
+		pero se cancela al meter el $\frac{1}{a}$ en la constante de la raíz porque $-\sqrt{a^2} = a$.
+		
+		Para ver la normalización, sea $Y = X - \mu$. $Y\sim N(0, \sigma^2)$. Luego sea $Z=\frac{Y}{\sigma^2}$. $Z\sim N(0,1)$.
+	
+	\item
+		VER DESPUES
+		
+	\item
+		VER DESPUES
 \end{enumerate}
