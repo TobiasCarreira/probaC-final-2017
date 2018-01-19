@@ -14,20 +14,38 @@
 		pero como cada $x$ es de la preimagen de $g$ en $y$, las expresiones son equivalentes.
 		
 	\item
-		$$E(X) = \int_0^{+\infty} x\cdot f_X(x)$$
-		Hago partes usando el reemplazo $du = f_X(x)dx$, $u = -(1 - F_X(x))$ (o sea, hago aparecer lo que quiero en la integral de partes).
-		
-		Quedan $v = x$, $dv = dx$.
-		\begin{align*}
-			E(X)	& = \int_0^{+\infty} x\cdot f_X(x)	\\
-					& = -x(1-F_X(x))\Big|_0^\infty - \int_0^{+\infty} -(1 - F_X(x))dx	\\
-					& = -x(1-F_X(x))\Big|_0^\infty + \int_0^{+\infty} 1 - F_X(x)dx
-		\end{align*}
-		
-		Queda ver que $x(1-F_X(x))\big|_0^\infty = 0$. Para $x=0$ se ve reemplazando, falta ver qué pasa cuando $x\rightarrow +\infty$.
-		Pero,
-		$$0 \leq x(1-F_X(x)) = x\int_x^{+\infty}f_X(u)du \leq \int_x^{+\infty}u\cdot f_X(u)du$$
-		
-		Como la esperanza está acotada, la parte de la derecha tiende a $0$ cuando $x\rightarrow +\infty$.
+		\begin{enumerate}
+			\item Caso continuo:
+				$$E(X) = \int_0^{+\infty} x\cdot f_X(x)$$
+				Hago partes usando el reemplazo $du = f_X(x)dx$, $u = -(1 - F_X(x))$ (o sea, hago aparecer lo que quiero en la integral de partes).
+				
+				Quedan $v = x$, $dv = dx$.
+				\begin{align*}
+					E(X)	& = \int_0^{+\infty} x\cdot f_X(x)	\\
+							& = -x(1-F_X(x))\Big|_0^\infty - \int_0^{+\infty} -(1 - F_X(x))dx	\\
+							& = -x(1-F_X(x))\Big|_0^\infty + \int_0^{+\infty} 1 - F_X(x)dx
+				\end{align*}
+				
+				Queda ver que $x(1-F_X(x))\big|_0^\infty = 0$. Para $x=0$ se ve reemplazando, falta ver qué pasa cuando $x\rightarrow +\infty$.
+				Pero,
+				$$0 \leq x(1-F_X(x)) = x\int_x^{+\infty}f_X(u)du \leq \int_x^{+\infty}u\cdot f_X(u)du$$
+				
+				Como la esperanza está acotada, la parte de la derecha tiende a $0$ cuando $x\rightarrow +\infty$.
+			\item Caso discreto:
+				Sean $\{x_0, x_1, \cdots, x_n, \cdots\}$ los elementos del rango de $X$, en orden creciente. Sea $x_0=0$
+				(si $0$ no está en el rango, lo agrego con probabilidad asociada $0$ porque si no está se me rompe todo con las geométricas).
+				
+				Se cumple que $p(x_i) = F(x_i) - F(x_{i-1})$.
+				\begin{align*}
+					E(X)	& = \sum_{i=1}^{+\infty} x_i\cdot{p(x_i)}				\\
+							& = \sum_{i=1}^{+\infty} x_i\cdot(F(x_i) - F(x_{i-1}))	\\
+							& = \sum_{i=1}^{+\infty} \sum_{j=1}^{i} (x_j - x_{j-1})\cdot(F(x_i) - F(x_{i-1}))		\\
+							& = \sum_{j=1}^{+\infty} \sum_{i=j}^{+\infty} (x_j - x_{j-1})\cdot(F(x_i) - F(x_{i-1}))	\\
+							& = \sum_{j=1}^{+\infty} (x_j - x_{j-1})\cdot(1 - F(x_{j-1}))							\\
+				\end{align*}
+				
+				Lo último que quedó es la suma de cada rectangulito de la $F$ (que en el caso discreto es constante salvo en los saltos que ocurren en los $x_i$).
+				Luego equivale a la integral de la función.
+		\end{enumerate}
 
 \end{enumerate}
