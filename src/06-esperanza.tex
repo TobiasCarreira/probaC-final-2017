@@ -1,0 +1,33 @@
+\section{Vectores Aleatorios}
+\begin{enumerate}
+	\setcounter{enumi}{42}
+	\item
+		Sea $Y = g(X)$.
+		\begin{align*}
+			E(Y)	& = \sum_{y} y\cdot p(Y=y)								\\
+					& = \sum_{y} \sum_{\{x : g(x) = y\}} y\cdot p(X=x)		\\
+					& = \sum_{y} \sum_{\{x : g(x) = y\}} g(x)\cdot p(X=x)	\\
+					& = \sum_{x} g(x)\cdot p(X=x)
+		\end{align*}
+		
+		Cuando reemplazo $y=g(x)$, es importante que en cada término es potencialmente un $x$ distinto,
+		pero como cada $x$ es de la preimagen de $g$ en $y$, las expresiones son equivalentes.
+		
+	\item
+		$$E(X) = \int_0^{+\infty} x\cdot f_X(x)$$
+		Hago partes usando el reemplazo $du = f_X(x)dx$, $u = -(1 - F_X(x))$ (o sea, hago aparecer lo que quiero en la integral de partes).
+		
+		Quedan $v = x$, $dv = dx$.
+		\begin{align*}
+			E(X)	& = \int_0^{+\infty} x\cdot f_X(x)	\\
+					& = -x(1-F_X(x))\Big|_0^\infty - \int_0^{+\infty} -(1 - F_X(x))dx	\\
+					& = -x(1-F_X(x))\Big|_0^\infty + \int_0^{+\infty} 1 - F_X(x)dx
+		\end{align*}
+		
+		Queda ver que $x(1-F_X(x))\big|_0^\infty = 0$. Para $x=0$ se ve reemplazando, falta ver qué pasa cuando $x\rightarrow +\infty$.
+		Pero,
+		$$0 \leq x(1-F_X(x)) = x\int_x^{+\infty}f_X(u)du \leq \int_x^{+\infty}u\cdot f_X(u)du$$
+		
+		Como la esperanza está acotada, la parte de la derecha tiende a $0$ cuando $x\rightarrow +\infty$.
+
+\end{enumerate}
