@@ -1,4 +1,4 @@
-\section{Vectores Aleatorios}
+\section{Esperanza}
 \begin{enumerate}
 	\setcounter{enumi}{42}
 	\item
@@ -45,7 +45,192 @@
 				\end{align*}
 				
 				Lo último que quedó es la suma de cada rectangulito de la $F$ (que en el caso discreto es constante salvo en los saltos que ocurren en los $x_i$).
-				Luego equivale a la integral de la función.
+				Luego equivale a la integral de la función\footnote{Hay un dibujo que sirve para entender qué está sumando esta expresión en el apunte de Ferrari, al principio de la página 13.}.
 		\end{enumerate}
-
+		
+	\item
+		\begin{enumerate}
+			\item Caso Discreto:
+				Supongamos que existe un $x_1 > 0$ tal que $p_X(x_1) > 0$.
+				$$0 = E(X) = \sum_{\{x \in Rn(X)\}} x\cdot p_X(x) \geq x_1\cdot p_X(x_1) > 0$$
+				Luego, no existe tal $x_1$, y $p(X > 0) = 0 \Rightarrow p(X = 0) = 1$.
+			\item Caso Continuo:
+				Sea $a > 0$ un valor tal que $f(a) > 0$.
+				Existe un entorno de a en $\mathbb{R}$ (digamos $[a - \epsilon, a + \epsilon]$) donde la densidad es estrictamente positiva porque $f$ es continua.
+				Es decir que en $[a, a + \epsilon]$ también.
+				Como toda la función es no negativa, se cumple:
+				$$\int_a^{+\infty}x\cdot f_X(x)dx \geq \int_a^{a+\epsilon}x\cdot f_X(x)dx > 0$$
+				
+				Aplicando esto a la esperanza se tiene:
+				$$E(X) = \int_0^{a}x\cdot f_X(x)dx + \int_a^{+\infty}x\cdot f_X(x)dx \geq \int_a^{+\infty}x\cdot f_X(x)dx > 0$$
+				
+				Luego no puede ser que exista un $a > 0$ con densidad positiva, entonces $P(X=0) = 1$.
+		\end{enumerate}
+		
+	\item
+		Minimizar $E(X-c)^2$ es lo mismo que minimizar $E(X-c)^2 - E(X^2)$ porque es un número que no depende de $c$.
+		\begin{align*}
+			E(X-c)^2 - E(X^2)	& = E((X-c)^2 - X^2) = E((X-c+X)(X-c-X))			\\
+								& = E((2X-c)c) = c\cdot E(2X-c)	= c\cdot (2E(X)-c)
+		\end{align*}
+		que es una cuadrática que tiene sus ceros en $c=0$ y $c=2E(X)$. Por lo tanto el mínimo está en el vértice que es el promedio: $c=E(X)$.
+		
+	\item
+		\begin{align*}
+			E(X)	& = \sum_{k=1}^{\infty}k\cdot \frac{e^{-\lambda}\lambda^{k}}{k!}				\\
+					& = \sum_{k=1}^{\infty}\frac{e^{-\lambda}\lambda^{k}}{(k-1)!}					\\
+					& = e^{-\lambda}\cdot\lambda \sum_{k=1}^{\infty}\frac{\lambda^{k-1}}{(k-1)!}	\\
+					& = e^{-\lambda}\cdot\lambda \sum_{k=0}^{\infty}\frac{\lambda^{k}}{k!}			\\
+					& = e^{-\lambda}\cdot\lambda e^{\lambda} = \lambda			\\
+		\end{align*}
+		
+	\item
+		\begin{align*}
+			E(X)	& = \sum_{i=1}^n i\binom{n}{i}p^i(1-p)^{n-i}							\\
+					& = \sum_{i=1}^n i\frac{n!}{i!\cdot (n-i)!}p^i(1-p)^{n-i}				\\
+					& = np \sum_{i=1}^n \frac{(n-1)!}{(i-1)!\cdot (n-i)!}p^{i-1}(1-p)^{n-i}	\\
+					& = np \sum_{i=0}^{n-1} \binom{n-1}{i}p^{i}(1-p)^{(n-1)-i}				\\
+					& = np
+		\end{align*}
+		Porque el término de la sumatoria es la probabilidad puntual de una $Bi(n-1, p)$.
+		
+	\item
+		\begin{enumerate}
+			\item $V(X) = E((x-\mu)^2) \geq 0$ porque es suma de producto de cosas no negativas.
+			\item
+				\begin{itemize}
+					\item[$\Rightarrow)$] $V(X) = E((X-\mu_X)^2) = V(0) = 0$.
+					\item[$\Leftarrow)$] Sea $Y = (X - \mu_X)^2$. Sabemos que $V(X) = E(Y) = 0$.
+						Como es no negativa, por la propiedad $45$ sabemos $P(Y=0) = 1$.
+						Finalmente, $P(X=\mu_X) = 1$.
+				\end{itemize}
+			\item $V(X+b) = E((X+b-E(X+b))^2) = E((X+b-\mu_X - b)^2) = E((X-\mu_X)^2) = V(X)$
+			\item $V(aX) = E((aX - E(aX))^2) = E(((aX - a\mu_X)^2) = E(a^2(X-\mu_X)^2) = a^2E((X-\mu_X)^2) = a^2V(X)$
+		\end{enumerate}
+	
+	\item
+		Primero, el conjunto de las VA es un espacio vectorial real (o sea, las VA se portan bien con la suma y el producto por un escalar).
+		Además, si definimos $<X,Y> = E(XY)$ vale que
+		\begin{itemize}
+			\item $<X,Y> = <Y,X>$
+			\item $<X,X> = E(X^2) \geq 0$
+			\item $E(X^2) = 0 \text{ sii } X=0$
+		\end{itemize}
+		así que es un producto interno del EV.
+		
+		Entonces tenemos:
+		\begin{align*}
+			\text{Cov}(X,Y)^2	& = E((X - \mu_X)(Y - \mu_Y))^2	\\
+								& = <X-\mu_X, Y-\mu_Y>^2		\\
+								& = <X-\mu_X, Y-\mu_Y>^2		\\
+								& \leq <X-\mu_X, X-\mu_X><Y-\mu_Y,Y-\mu_Y>		\\
+								& = E((X-\mu_X)^2)E((Y-\mu_Y)^2)				\\
+								& = V(X)V(Y)
+		\end{align*}
+		La desigualdad vale por CBS para espacios vectoriales.
+	
+	\item
+		\begin{enumerate}
+			\item
+				\begin{align*}
+					\text{Cov}(X,Y)	& = E((X-\mu_X)(Y-\mu_Y))							\\
+									& = E(XY) - \mu_XE(Y) - \mu_YE(X) + \mu_X\mu_Y		\\
+									& = E(XY) - \mu_X\mu_Y - \mu_X\mu_Y + \mu_X\mu_Y	\\
+									& = E(XY) - \mu_X\mu_Y
+				\end{align*}
+			\item $$\text{Cov}(X,X) = E((X-\mu_X)^2) = V(X)$$
+			\item
+				Sean $U=X-\mu_X$ y $V=Y-\mu_Y$.
+				$$V(X) + V(Y) - |\text{Cov}(X,Y)| = E(U^2) + E(V^2) - |\text{Cov}(U,V)|$$
+				
+				Si $\text{Cov}(X,Y) = E(UV) \geq 0$:
+				\begin{align*}
+					V(X) + V(Y) - |\text{Cov}(X,Y)|	& = E(U^2) + E(V^2) - E(UV)	\\
+													& = E((U-V)^2) + E(UV)		\\
+													& \geq E((U-V)^2) \geq 0
+				\end{align*}
+				
+				Si no,
+				\begin{align*}
+				V(X) + V(Y) - |\text{Cov}(X,Y)|	& = E(U^2) + E(V^2) + E(UV)	\\
+												& = E((U+V)^2) - E(UV)		\\
+												& \geq E((U+V)^2) \geq 0
+				\end{align*}
+				
+			\item Es obvio porque el producto conmuta.
+				
+			\item
+				\begin{align*}
+					\text{Cov}(aX+bY, Z)	& = E((aX - a\mu_X + bY - b\mu_Y)(Z-\mu_Z))					\\
+											& = E((aX - a\mu_X)(Z-\mu_Z) + (bY - b\mu_Y)(Z-\mu_Z))		\\
+											& = E((aX - a\mu_X)(Z-\mu_Z)) + E((bY - b\mu_Y)(Z-\mu_Z))	\\
+											& = a\cdot E((X - \mu_X)(Z-\mu_Z)) + b\cdot E((Y - \mu_Y)(Z-\mu_Z))	\\
+											& = a\cdot \text{Cov}(X, Z) + b\cdot \text{Cov}(Y, Z)
+				\end{align*}
+		\end{enumerate}
+		
+	\item
+		\begin{enumerate}
+			\item Sean $U=X-\mu_X$, $V=Y-\mu_Y$.
+				$$V(X+Y) = E(U+V)^2 = E(U^2 + V^2 +2UV) = V(U) + V(V) + 2\text{Cov}(U,V)$$
+				$$V(X+Y) = V(X) + V(Y) + 2\text{Cov}(X,Y)$$
+			\item
+				$$\text{Cov}(X,Y) = E((X-\mu_X)(Y-\mu_Y)) = E(XY) - E(X)E(Y) = 0$$
+		\end{enumerate}
+	
+	\item
+		BUSCAR EJEMPLO DESPUES
+	\item
+		BUSCAR EJEMPLO DESPUES
+		
+	\item
+		\begin{align*}
+			\rho(aX+b, cY+d)	& = \frac{Cov(aX+b, cY+d)}{\sqrt{V(aX+b)V(cY+d)}}	\\
+								& = \frac{ac\cdot Cov(X,Y)}{\sqrt{a^2c^2V(X)V(Y)}}	\\
+								& = \frac{ac}{|ac|}\cdot{\rho(X,Y)}					\\
+								& = \text{sg}(ac)\cdot{\rho(X,Y)}
+		\end{align*}
+		
+	\item
+		Sean $U=X-\mu_X$, $V=Y-\mu_Y$. Sabemos que
+			$$\rho(X,Y) = \frac{\text{Cov}(U,V)}{\sqrt{\text{Var}(U)\text{Var}(V)}} = \frac{<U,V>}{\sqrt{<U,U><V,V>}}$$
+			$$\rho(X,Y)^2 = \frac{<U,V>^2}{<U,U><V,V>}$$
+			
+		El cociente es $\leq 1$ por CS. Además sabemos que ocurre la igualdad cuando:
+			\begin{align*}
+				V			& = \alpha U							\\
+				(Y-\mu_Y)	& = \alpha (X-\mu_X)					\\
+				Y-\alpha X	& = \mu_Y - \alpha\cdot \mu_X = \beta	\\
+				Y			& = \alpha X + \beta
+			\end{align*}
+			
+	\item
+		$$E(aX) = \sum_{x\in \text{Rg}(X)} aX\cdot P(X=x) = a\sum_{x\in \text{Rg}(X)} X\cdot P(X=x) = a\cdot E(X)$$
+		\begin{align*}
+			E(X+Y)	& = \sum_{x\in \text{Rg}(X)}\sum_{y\in \text{Rg}(Y)}(x+y)P(X=x \land Y=y)	\\
+					& = \sum_{x\in \text{Rg}(X)}\sum_{y\in \text{Rg}(Y)}x\cdot P(X=x \land Y=y) + \sum_{x\in \text{Rg}(X)}\sum_{y\in \text{Rg}(Y)}y\cdot P(X=x \land Y=y)	\\
+					& = \sum_{x\in \text{Rg}(X)}x\sum_{y\in \text{Rg}(Y)} P(X=x \land Y=y) + \sum_{y\in \text{Rg}(Y)}y \sum_{x\in \text{Rg}(X)} P(X=x \land Y=y)	\\
+					& = \sum_{x\in \text{Rg}(X)}x\cdot P(X=x) + \sum{y\in \text{Rg}(Y)}y \cdot P(Y=y)	\\
+					& = E(X) + E(Y)
+		\end{align*}
+		
+		La propiedad vale para la sumatoria de $n$ términos por inducción.
+	\item
+		$$E(aX) = \int_{-\infty}^{+\infty} aX\cdot f_X(x) = a\int_{-\infty}^{+\infty} X\cdot f_X(x) = a\cdot E(X)$$
+		\begin{align*}
+			E(X+Y)	& = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}(x+y)f_{X,Y}(x,y)dy\text{ }dx	\\
+					& = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}x\cdot f_{X,Y}(x,y)dy\text{ }dx + \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}y\cdot f_{X,Y}(x,y)dx\text{ }dy	\\
+					& = \int_{-\infty}^{+\infty}x\int_{-\infty}^{+\infty} f_{X,Y}(x,y)dy\text{ }dx + \int_{-\infty}^{+\infty}y\int_{-\infty}^{+\infty} f_{X,Y}(x,y)dx\text{ }dy				\\
+					& = \int_{-\infty}^{+\infty}x\cdot f_X(x)\text{ }dx + \int_{-\infty}^{+\infty}y\cdot f_Y(y)\text{ }dy	\\
+					& = \int_{-\infty}^{+\infty}x\cdot f_X(x)\text{ }dx + \int_{-\infty}^{+\infty}y\cdot f_Y(y)\text{ }dy	\\
+					& = E(X) + E(Y)
+		\end{align*}
+		
+		La propiedad vale para la sumatoria de $n$ términos por inducción.
+	\item
+		Sea $Z = X-Y$. Entonces $P(Z \geq 0) = 1$.
+		$$E(Z) = \int_{-\infty}^{+\infty}z\cdot f_Z(z)\text{ }dz \geq \int_{-\infty}^{+\infty}0\cdot f_Z(z)\text{ }dz = \int_{-\infty}^{+\infty}0 \text{ }dz = 0$$
+		$$E(Z) = E(X)+E(Y) \Rightarrow E(X)+E(Y) \geq 0 \Rightarrow E(X) \geq E(Y)$$
+	\item
+		$$E(X) = \sum_{x \in \text{Rg}(X)} x\cdot P(X=x) = c\cdot P(X=c) = c\cdot 1 = c$$
 \end{enumerate}
