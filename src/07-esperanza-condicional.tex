@@ -1,0 +1,72 @@
+\section{Esperanza Condicional}
+\begin{enumerate}
+	\setcounter{enumi}{60}
+	\item
+		\begin{tabular}{r|cc|c}
+			\backslashbox{X}{Y}	& 2	& 3	& T	\\
+			\hline
+			
+			0	& 0		& 1/8	& 1/8	\\
+			1	& 3/8	& 0		& 3/8	\\
+			2	& 3/8	& 0		& 3/8	\\
+			3	& 0		& 1/8	& 1/8	\\ 
+			\hline
+			T	& 3/4	& 1/4	& 1		\\
+		\end{tabular}
+		
+		No son independientes. $$E(X|Y=2) = \frac{1\cdot\frac{3}{8} + 2\cdot\frac{3}{8}}{\frac{3}{8} + \frac{3}{8}} = 3/2$$
+	\item
+		$$E(X|Y=1) = \frac{2\cdot 1/6 + 4\cdot 1/6 + 6\cdot 1/6}{1/2} = 4$$
+		$$E(Y|X\geq 4) = \frac{1\cdot 1/6 + 0\cdot 1/6 + 1\cdot 1/6}{1/2} = 2/3$$
+	\item
+		Sean $N\sim P(\lambda)$ y $X_i\sim \text{Bi}(p)$.
+		
+		\begin{align*}
+			E\left(\sum_{i=1}^{N}X_i\right)	& = \sum_{k=1}^{\infty} E\left(\sum_{i=1}^{N}X_i \Big| N=k\right) \cdot P(N=k)					\\
+											& = \sum_{k=1}^{\infty} E\left(\sum_{i=1}^{k}X_i \right) \frac{e^{-\lambda}\lambda^k}{k!}		\\
+											& = \sum_{k=1}^{\infty} \left(\sum_{i=1}^{k}\mu_X \right) \frac{e^{-\lambda}\lambda^k}{k!}		\\
+											& = \sum_{k=1}^{\infty} kp \frac{e^{-\lambda}\lambda^k}{k!}						\\
+											& = e^{-\lambda}\lambda \sum_{k=1}^{\infty} p \frac{\lambda^{k-1}}{(k-1)!}		\\
+											& = e^{-\lambda}\lambda p\sum_{k=0}^{\infty} \frac{\lambda^k}{k!}				\\
+											& = e^{-\lambda}\lambda p e^{\lambda}											\\
+											& = \lambda p
+		\end{align*}
+	\item
+		\begin{align*}
+			f_{X,Y}(x,y)	& = \lambda^2e^{-\lambda y} \mathbb{I}_{(0<x<y)}	\\
+			f_X(x)			& = \int_{-\infty}^{+\infty}\lambda^2e^{-\lambda y} \mathbb{I}_{(0<x<y)}\text{ }dy	\\
+							& = \int_{x}{+\infty}\lambda^2e^{-\lambda y} \mathbb{I}_{(0<x)}\text{ }dy			\\
+							& = (-\lambda e^{-\lambda y})\Big|_{x}^{+\infty} \mathbb{I}_{(0<x)}		\\
+							& = (\lambda e^{-\lambda x}) \mathbb{I}_{(0<x)}
+		\end{align*}
+		Entonces $X\sim E(\lambda)$.
+		Por otro lado:
+		\begin{align*}
+			f_Y(y)	& = \int_{-\infty}^{+\infty}\lambda^2e^{-\lambda y} \mathbb{I}_{(0<x<y)}\text{ }dx	\\
+					& = \int_0^y\lambda^2e^{-\lambda y} \mathbb{I}_{(0<y)}\text{ }dx					\\
+					& = \lambda^2e^{-\lambda y}\cdot x\Big|_0^y \mathbb{I}_{(0<y)}						\\
+					& = \lambda^2e^{-\lambda y}\cdot y \mathbb{I}_{(0<y)}								\\
+					& = \frac{\lambda^2\cdot y^{2-1} e^{-\lambda y}}{(2-1)!} \mathbb{I}_{(0<y)}
+		\end{align*}
+		Entonces $Y\sim \Gamma(2, \lambda)$, por lo que $Z = Y-X \sim E(\lambda)$. 
+	\item
+		\begin{align*}
+			E\left(\sum_{i=1}^{N}X_i\right)	& = \sum_{j=1}^{\infty} P(N=j) \cdot E\left(\sum_{i=1}^{N}X_i\Big|N=j\right)	\\
+											& = \sum_{j=1}^{\infty} P(N=j) \cdot E\left(\sum_{i=1}^{j}X_i\right)			\\
+											& = \sum_{j=1}^{\infty} P(N=j) \cdot \left(\sum_{i=1}^{j}E(X_i)\right)			\\
+											& = \sum_{j=1}^{\infty} P(N=j) \cdot j\cdot E(X_1)			\\
+											& = E(X_1) \sum_{j=1}^{\infty} j\cdot P(N=j)				\\
+											& = E(X_1) E(N)
+		\end{align*}
+	\item
+		Sea $N$ la cantidad de túneles recorridos hasta salir. $N\sim G(1/3)$.
+		Sea $T$ el tiempo total que se tarda en salir, y $T_i$ el tiempo que lleva recorrer cada túnel salvo el último.
+		$$E(T_i) = 1/2\cdot 2h + 1/2\cdot 3h = 2,5h$$
+		
+		Ahora usamos Wald para resolver la esperanza condicional:
+		\begin{align*}
+			E(T)	& = E\left(1h + \sum_{n=1}^{N-1}T_i\right) = 1h + E\left(\sum_{n=1}^{N-1}T_i\right)	\\
+					& = 1h + E(N-1)E(T_i)	\\
+					& = 1h + (3h-1h)\cdot 2,5h = 6h
+		\end{align*}
+\end{enumerate}
