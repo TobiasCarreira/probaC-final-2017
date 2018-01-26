@@ -1,0 +1,73 @@
+\section{Variables Aleatorias}
+\begin{enumerate}
+	\setcounter{enumi}{15}
+	\item
+		Definición: $F_X(x)$ es la función que en cada punto vale $P(X\leq x)$.
+		
+		Propiedades:
+			\begin{enumerate}
+				\item $0 \leq F_X(x) \leq 1$
+				\item Es creciente: $x< y \Rightarrow F_X(x) \leq F_X(y)$
+				\item $\lim_{x\rightarrow -\infty}F_X(x) = 0$ y $\lim_{x\rightarrow +\infty}F_X(x) = 1$
+				\item $F_X$ es continua a derecha.
+			\end{enumerate}
+			
+		Demostraciones:
+			\begin{enumerate}
+				\item Vale porque en cada punto es una probabilidad.
+				\item
+					Sean $x,k > 0$. $$F_X(x+k) = P(X\leq x+k) = P((X\leq x) \lor (x<X\leq x+k)) = P(X\leq x) + P(x<X\leq x+k)$$
+					porque ambos eventos son disjuntos. Luego $$F_X(x+k) = F_X(x) + P(x<X\leq x+k) \geq F_X(x)$$
+				\item
+					Empezamos por demostrar que $\lim_{x \rightarrow +\infty}F_X(x) = 1$.
+					
+					Sea $\{A_n\}$ una sucesión de eventos tal que $A_n = \{X\leq n\}$.
+					Esta es una sucesión creciente (o sea que $A_n \subset A_{n+1}$), y además $\lim_{n\rightarrow +\infty}A_n = \{x \in\mathbb{R}\}$.
+					
+					$$\lim_{n\rightarrow +\infty}F_X(n) = \lim_{n\rightarrow +\infty}P(A_n) = P(\{x\in\mathbb{R}\}) = 1$$
+					el segundo paso se puede hacer porque la sucesión es creciente.
+					
+					Ahora vamos a demostrar que $\lim_{x \rightarrow -\infty}F_X(x) = 0$.
+					
+					Sea $\{A_n\}$ una sucesión de eventos tal que $A_n = \{X\leq -n\}$.
+					Esta es una sucesión decreciente (o sea que $A_n \supset A_{n+1}$), y además $\lim_{n\rightarrow +\infty}A_n = \emptyset $.
+					
+					$$\lim_{n\rightarrow -\infty}F_X(n) = \lim_{n\rightarrow +\infty}P(A_n) = P(\emptyset) = 0$$
+					el segundo paso se puede hacer porque la sucesión es decreciente.
+				\item
+					Queremos ver que, dados $x_0\in\mathbb{R}$, $\epsilon > 0$, existe $\delta > 0$ tal que:
+					$$x_0 < x < x_0 + \delta \Rightarrow F_X(x_0) - \epsilon < F_X(x) < F_X(x_0) + \epsilon$$
+					
+					La primera parte se cumple porque $F_X$ es una función creciente. Queda ver que $F_X(x) < F_X(x_0) + \epsilon$.
+					
+					Consideramos la sucesión $\{A_n\}$ tal que $A_n = \{X \in (-\infty, x_0 + 1/n]\}$. Sea $A = \{X \in (-\infty, x_0]\}$.
+					Esta sucesión es decreciente y además $P(A_n) = F_X(x_0+\frac{1}{n})$.
+					
+					Además $\lim_{n\rightarrow \infty}A_n = A$
+					
+					$$\lim_{n\rightarrow \infty}F_X(x_0 + 1/n) = \lim_{n\rightarrow \infty}P(A_n) = P(A) = F_X(x_0)$$
+					
+					Entonces, como $F_X$ es creciente, dados $x_0, \epsilon$ existe $n_0$ tal que:
+					$$n > n_0 \Rightarrow F_X(x_0 + 1/n) < F_X(x_0) + \epsilon$$
+					
+					Así que tomando $\delta = 1/n_0$ se cumple la condición.
+			\end{enumerate}
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+	\item
+		
+\end{enumerate}
