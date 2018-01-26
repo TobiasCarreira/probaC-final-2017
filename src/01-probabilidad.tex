@@ -8,18 +8,44 @@
 	\end{itemize}
 	\begin{enumerate}
 		\item
-			$$A \cup A^c = S$$ y aplicando probabilidad a ambos lados,
-			$$P(A \cup A^c) = P(S)$$ 
+			$$A \bigcup A^c = S$$ y aplicando probabilidad a ambos lados,
+			$$P(A \bigcup A^c) = P(S)$$ 
 			$$P(A) + P(A^c) = 1$$ pues $A$ y $A^c$ son disjuntos, y $P(S)=1$. 
 			$$P(A) = 1 - P(A^c)$$ 
 		\item 
-			$$(A\setminus B) \cup B = A$$ porque $B\subset A$. Aplicando probabilidad:
-			$$P((A\setminus B) \cup B) = P(A)$$
+			$$(A\setminus B) \bigcup B = A$$ porque $B\subset A$. Aplicando probabilidad:
+			$$P((A\setminus B) \bigcup B) = P(A)$$
 			$$P(A\setminus B) + P(B) = P(A)$$ pues $B$ y $A\setminus B$ son disjuntos.
 			$$P(A\setminus B)= P(A) - P(B)$$
 	\end{enumerate}
-	\item 
-	\item 
-	\item 
-	\item 
+	\item
+		\begin{align*}
+			P(A\lor B)	& = P((A\land S)\lor B)									\\
+						& = P((A\land (B\lor B^c))\lor B)						\\
+						& = P((A\land B) \lor (A\land B^c) \lor B)				\\
+						& = P((A\land B^c) \lor B)								\\
+						& = P(A\land B^c) + P(B) + P(A\land B) - P(A\land B)	\\
+						& = P(B) + (P(A\land B^c) + P(A\land B)) - P(A\land B)	\\
+						& = P(B) + P(A) - P(A\land B)
+		\end{align*}
+	\item
+		Para dos eventos ocurre que $P(A\lor B) = P(A) + P(B) - P(A\land B) \leq P(A) + P(B)$.
+		
+		Se puede demostrar por inducción:
+			\begin{itemize}
+				\item $P(A_1) \leq P(A_1)$ porque son iguales.
+				\item $$P(U_{i=1}^kA_i) = P(U_{i=1}^{k-1}A_i \lor A_k) \leq P(U_{i=1}^{k-1}A_i) + P(A_k)$$
+					Por HI, $P\left(\bigcup_{i=1}^{k-1}A_i\right) \leq \sum_{i=1}^{k-1}P(A_i)$
+					Entonces $$P\left(\bigcup_{i=1}^kA_i\right) \leq \sum_{i=1}^{k-1}P(A_i) + P(A_k) = \sum_{i=1}^kP(A_i)$$
+			\end{itemize}
+	\item
+		Sea $\{B_1, \cdots, B_n, \cdots\}$ una sucesión tal que $B_i = A_i - A_{i-1}$ (salvo $B_1 = A_1$). Podemos hacer esto porque la sucesión es creciente.
+		
+		Es claro que $A_n = \bigcup_{i=1}^n B_i$, y que $A = \bigcup_{i=1}^{+\infty} B_i$.
+		
+		$$P(A) = \sum_{i=1}^{\infty}P(B_i) = \lim_{n\rightarrow \infty}\sum_{i=1}^{n}P(B_i) = \lim_{n\rightarrow \infty}P\left(\bigcup_{i=1}^{n}B_i\right) = \lim_{n\rightarrow\infty}P(A_n)$$
+	\item
+		Sea $B_n = A_n^c$. $B_n$ es una sucesión creciente de eventos, y $A^c = \bigcup_{i=1}^{\infty} B_i$, luego vale el punto anterior:
+		$$1 - P(A) = P(A^c) = \lim_{n\rightarrow \infty} P(B_n) = \lim_{n\rightarrow \infty} P(1 - A_n) = 1 - \lim_{n\rightarrow \infty} P(A_n)$$
+		de donde se obtiene la propiedad pedida.
 \end{enumerate}
