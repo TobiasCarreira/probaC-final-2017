@@ -37,8 +37,53 @@
 		$$P(B_n) = P(A_1) P(A_2|B_1) \cdots P(A_n|B_{n-1})$$
 		Q.E.D.
 	\item
+		$$P(B_1 = N \land B_3 = R) = \frac{4\cdot 3\cdot 5}{7\cdot 6\cdot 5} = \frac{2}{7}$$
 	\item
+		\begin{enumerate}
+		\item Proba total:
+			Sea $\{B_1, \cdots, B_n\}$ partición del espacio muestral $S$. Entonces $P(A) = \sum_{i=1}^{n} P(A|B_i)P(B_i)$.
+			
+			Demostración:
+			
+			$$P(A) = P(A \land S) = P\left(A \land \bigcup_{i=1}^{n}B_i\right) = P(\bigcup_{i=1}^{n}(A \land B_i)) = \sum_{i=1}^n P(A\land B_i)$$
+			Porque los eventos $A\land B_i$ son disjuntos dos a dos.
+			
+			Finalmente, como $P(A|B) = P(A\land B)/P(B)$,
+			$$P(A) = \sum_{i=1}^n P(A\land B_i) = \sum_{i=1}^n P(A|B_i)P(B_i)$$
+		\item Bayes:
+			Sea $\{B_1, \cdots, B_n\}$ partición del espacio muestral $S$. Entonces
+				$$P(B_i|A) = \frac{P(A|B_i)P(B_i)}{P\left(\sum_{i=1}^{n} P(A|B_i)P(B_i)\right)}$$
+				
+			Demostración:
+			
+			El denominador, por Proba Total, es $P(A)$. Por otro lado, vale que:
+			$$P(B_i|A)P(A) = P(A\land B) = P(A|B_i)P(B_i)$$
+			Combinando los extremos y pasando $P(A)$ dividiendo se obtiene la demostración.
+		\end{enumerate}
 	\item
+		Sin pérdida de generalidad el jugador elige la puerta 1. Sean $\{B_1, B_2, B_3\} = $ El premio está en la puerta $i$. Se cumple $P(B_i) = 1/3$.
+		
+		Si ocurre $B_1$, entonces conviene cambiar después de que el presentador abre alguna puerta. Si ocurre cualquiera de las otras dos no conviene.
+		
+		Por lo tanto la probabilidad de que convenga cambiar es $2/3$.
 	\item
+		Definición de independencia:
+			
+			Un conjunto de eventos $\{A_1, \cdots, A_n\}$ se dice independiente cuando, para cada $K$ subconjunto de $\{1, \cdots, n\}$, se cumple:
+			$$P\left(\bigcap_{i\in K}{A_i}\right) = \prod_{i\in K}P(A_i)$$
+		Ejemplo: Se tiran dos monedas y se definen las 3 variables aleatorias:
+		\begin{itemize}
+			\item $A = $ la primera moneda es cara
+			\item $B = $ la segunda moneda es cara
+			\item $C = $ las monedas son iguales
+		\end{itemize}
+		$A$ y $B$ son independientes porque son dos monedas diferentes. $A$ es independiente de $C$ porque $P(A|C) = P(A) = 1/2$. Sin embargo, cuando valen $A$ y $B$ a la vez, $P(C) = 1 \neq 1/2$, así que no son independientes.
 	\item
+		Sean $A$, $B$ eventos independientes, disitntos de $S$ y no vacíos. Entonces existen $a,b \in \{1, \cdots n-1\}$ tales que $P(A) = a/n$ y $P(B) = b/n$.
+		
+		Como son independientes, $$P(AB) = P(A)P(B) = \frac{ab}{n^2}$$
+		Al mismo tiempo $AB$ es un evento de $S$, así que debe existir $c$ tal que $P(AB) = c/n$.
+		
+		Tenemos que $\frac{ab}{n^2} = \frac{c}{n}\Rightarrow ab=cn \Rightarrow n|ab$ (porque los 4 números son distintos de $0$).
+		Como $n$ es primo, $n|a$ o $n|b$. Pero esto no puede ocurrir porque $0<a,b<n$. Entonces no pueden existir los eventos $A,B$. 
 \end{enumerate}

@@ -8,13 +8,13 @@
 	\end{itemize}
 	\begin{enumerate}
 		\item
-			$$A \bigcup A^c = S$$ y aplicando probabilidad a ambos lados,
-			$$P(A \bigcup A^c) = P(S)$$ 
+			$$A \cup A^c = S$$ y aplicando probabilidad a ambos lados,
+			$$P(A \cup A^c) = P(S)$$ 
 			$$P(A) + P(A^c) = 1$$ pues $A$ y $A^c$ son disjuntos, y $P(S)=1$. 
 			$$P(A) = 1 - P(A^c)$$ 
 		\item 
-			$$(A\setminus B) \bigcup B = A$$ porque $B\subset A$. Aplicando probabilidad:
-			$$P((A\setminus B) \bigcup B) = P(A)$$
+			$$(A\setminus B) \cup B = A$$ porque $B\subset A$. Aplicando probabilidad:
+			$$P((A\setminus B) \cup B) = P(A)$$
 			$$P(A\setminus B) + P(B) = P(A)$$ pues $B$ y $A\setminus B$ son disjuntos.
 			$$P(A\setminus B)= P(A) - P(B)$$
 	\end{enumerate}
@@ -34,7 +34,7 @@
 		Se puede demostrar por inducción:
 			\begin{itemize}
 				\item $P(A_1) \leq P(A_1)$ porque son iguales.
-				\item $$P(U_{i=1}^kA_i) = P(U_{i=1}^{k-1}A_i \lor A_k) \leq P(U_{i=1}^{k-1}A_i) + P(A_k)$$
+				\item $$P\left(\bigcup_{i=1}^kA_i\right) = P\left(\bigcup_{i=1}^{k-1}A_i \lor A_k\right) \leq P\left(\bigcup_{i=1}^{k-1}A_i\right) + P(A_k)$$
 					Por HI, $P\left(\bigcup_{i=1}^{k-1}A_i\right) \leq \sum_{i=1}^{k-1}P(A_i)$
 					Entonces $$P\left(\bigcup_{i=1}^kA_i\right) \leq \sum_{i=1}^{k-1}P(A_i) + P(A_k) = \sum_{i=1}^kP(A_i)$$
 			\end{itemize}
