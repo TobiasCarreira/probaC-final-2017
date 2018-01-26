@@ -53,7 +53,20 @@
 					Así que tomando $\delta = 1/n_0$ se cumple la condición.
 			\end{enumerate}
 	\item
+		Sea $a = F_X(x_0) - P(X=x_0)$. Queremos ver que dados $x_0, \epsilon > 0$, existe $\delta > 0$ tal que
+		$$x_0 - \delta < x < x_0 \Rightarrow a - \epsilon \leq F_X(x) \leq a + \epsilon$$
 		
+		Al mismo tiempo $a = P(X\leq x_0) - P(X=x_0) = P(X < x_0)$.
+		Como $x < x_0$, se cumple que $P(X\leq x) \leq P(X<x_0)$. Entonces:
+		$$F_X(x) = P(X\leq x) \leq P(X<x_0) = a$$
+		Por lo tanto $F_X(x) \leq a + \epsilon$. Queda ver $a - \epsilon \leq F_X(x)$.
+		
+		Tomamos $\{A_n\}$ tal que $A_n=\{X < x_0-1/n\}$. Es una sucesión creciente y $\bigcup_{i=1}^{\infty}A_i = \{X<x_0\}$.
+		
+		Entonces $$\lim_{n\rightarrow\infty}F_X(x_0 - 1/n) = \lim_{n\rightarrow\infty}P(A_n) = P(X < x_0) = a$$
+		
+		Por lo tanto existe $n_0$ tal que $n>n_0\Rightarrow F_X(x_0 - 1/n_0) \geq a - \epsilon$.
+		Como $F_X$ es creciente, tomando $\delta = 1/n_0$ se obtiene la propiedad. 
 	\item
 		
 	\item
