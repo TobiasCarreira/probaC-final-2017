@@ -69,8 +69,18 @@
 		Como $F_X$ es creciente, tomando $\delta = 1/n_0$ se obtiene la propiedad. 
 	\item
 		
+  % Ej 19 %
 	\item
 		
+    Sean $F_X$, $F_Y$ funciones de distribución acumuladas de X e Y respectivamente.
+    
+    \begin{itemize}
+      \item[$\Rightarrow)$] $P(X = x) = P(Y = x)$ para todo $x$. Sea $x \in R_X$ \\
+                            $F_X(x) = P(X \leq x) = \sum_{y \leq x, y \in R_X }^{} P_X(y) =  \sum_{y \leq x, y \in R_X }^{} P_Y(y) = F_Y(x) $
+      \item[$\Leftarrow)$]  $F_X = F_Y$, para todo $x \in R_X $ vale $F_X(x) = F_Y(x)$. Luego: \\
+                            $P(X=x) = F_X(x) - F_X(x^{-}) = F_Y(x) - F_Y(x^{-}) = P(Y=x)$
+    \end{itemize}
+    
 	\item
 		
 	\item
