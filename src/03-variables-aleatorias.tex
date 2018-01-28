@@ -72,13 +72,46 @@
 	\item
 		
 	\item
+		Sea $$F(T) = P(N(t) \geq n) = \sum_{k=n}^{\infty}\frac{e^{-\lambda t}(\lambda t)^k}{k!}$$
 		
+		Queremos ver que esto es la acumulada de una Gamma. Si derivamos por $t$, el objetivo es formar la densidad de una Gamma.
+		
+		\begin{align*}
+			f(t)	& = \sum_{k=n}^{\infty}\frac{e^{-\lambda t}\cdot k(\lambda t)^{k-1}\lambda}{k!} + \sum_{k=n}^{\infty}\frac{(-\lambda)e^{-\lambda t}\cdot(\lambda t)^k}{k!}	\\
+					& = \sum_{k=n}^{\infty}\frac{e^{-\lambda t}(\lambda t)^{k-1}\lambda}{(k-1)!} - \sum_{k=n}^{\infty}\frac{\lambda e^{-\lambda t}\cdot(\lambda t)^k}{k!}		\\
+					& = e^{-\lambda t} \left(\sum_{k=n}^{\infty}\frac{\lambda^k t^{k-1}}{(k-1)!} - \sum_{k=n}^{\infty}\frac{\lambda^{k+1} t^k}{k!}\right)						\\
+					& = e^{-\lambda t} \left(\sum_{k=n-1}^{\infty}\frac{\lambda^{k+1} t^k}{k!} - \sum_{k=n}^{\infty}\frac{\lambda^{k+1} t^k}{k!}\right)						\\
+					& = e^{-\lambda t} \frac{\lambda^{n} t^{n-1}}{(n-1)!}	\\
+					& = \frac{e^{-\lambda t}\lambda^{n} t^{n-1}}{\Gamma(n)}
+		\end{align*}
+		
+		Que es la densidad de una $\Gamma(n, \lambda)$.
 	\item
+		Primero, supongamos que $\mu=0$ porque al ser la integral en $(-\infty, +\infty)$ no cambia el valor con un desplazamiento horizontal.
 		
+		Si llamamos $I$ a la integral que buscamos, vamos a calcular el valor de $I^2$.
+		
+		\begin{align*}
+			I^2	& = \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi \sigma^2}}e^{\frac{-x^2}{2\sigma^2}} dx	\cdot \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi \sigma^2}}e^{\frac{-y^2}{2\sigma^2}} dy	\\
+				& = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi \sigma^2}}e^{\frac{-x^2}{2\sigma^2}} \frac{1}{\sqrt{2\pi \sigma^2}}e^{\frac{-y^2}{2\sigma^2}} dy dx			\\
+				& = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \frac{1}{2\pi \sigma^2} e^{\frac{-(x^2+y^2)}{2\sigma^2}} dy dx
+		\end{align*}
+		
+		Hacemos un cambio a coordenadas polares: $x = r\cdot sin(\theta)$, $y = r\cdot cos(\theta)$.
+		\begin{align*}
+			I^2	& = \int_{0}^{+\infty} \int_{0}^{2\pi} \frac{1}{2\pi \sigma^2} e^{\frac{-r^2}{2\sigma^2}}\cdot r d\theta dr	\\
+				& = \int_{0}^{+\infty} \frac{r}{\sigma^2} e^{\frac{-r^2}{2\sigma^2}} dr										\\
+				& =  -e^{\frac{-r^2}{2\sigma^2}}\Big|_{0}^{+\infty} = 0 + e^0 = 1
+		\end{align*}
 	\item
-		
+		Ver ejercicio 40 (es igual)
 	\item
-		
+		Sea $X\sim E(\lambda)$. Entonces $P(X \geq k) = e^{-\lambda k}$.
+		Sean $k>0$, $t>0$.
+		\begin{align*}
+			P(X \geq k+t | X\geq k)	& = \frac{P(X \geq k+t \land X\geq k)}{P(X\geq k)} = \frac{P(X \geq k+t)}{P(X\geq k)}	\\
+									& = \frac{e^{-\lambda (t+k}}{e^{-\lambda k}} = e^{-\lambda (t+k-k)} = e^{-\lambda t} = P(X \geq t)
+		\end{align*}
 	\item
 		
 	\item
