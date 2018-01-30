@@ -1,0 +1,63 @@
+\section{Cadenas de Markov}
+\begin{enumerate}
+	\setcounter{enumi}{93}
+	\item
+		Un proceso de Markov es un proceso estocástico (de tiempo discreto) tal que la probabilidad de $X_n$ sólo depende del valor de $X_{n-1}$ y de una matriz de transición $Q$.
+		En esta matriz, $Q_{ij} = P(X_{n+1} = j | X_n = i)$.
+		
+		Para demostrar que $P(X_n = j | X_0 = i) = Q^n(i,j)$ procedemos por inducción.
+		
+		Para $n=1$ es cierto por la definición de $Q$.
+		
+		Supongamos que es cierto para todo número hasta $n$.
+		
+		\begin{align*}
+			P(X_{n+1} = j | X_0 = i)	& = \sum_{k\in S} P(X_{n+1} = j | X_n = k \land X_0 = i) \cdot P(X_n = k | X_0 = i)	\\
+										& = \sum_{k\in S} P(X_{n+1} = j | X_n = k) \cdot Q^n(i,k)							\\
+										& = \sum_{k\in S} Q(k,j) \cdot Q^n(i,k)											\\
+										& = Q^{n+1}(i,j)
+		\end{align*}
+		
+	\item
+		Demostrar que $Q^{n+m}(x,y) = \sum_{z\in S}Q^n(x,z) Q^m(z,y)$.
+		
+		\begin{align*}
+			Q^{n+m}(x,y)	& = P(X_{n+m} = y | X_0=x)	\\
+							& = \sum_{z\in S} P(X_{n+m} = y | X_n = z \land X_0=x) \cdot P(X_n = z | X_0=x)	\\
+							& = \sum_{z\in S} P(X_{n+m} = y | X_n = z) \cdot Q^n(x,z)						\\
+							& = \sum_{z\in S} Q^m(z,y) \cdot Q^n(x,z)
+		\end{align*}
+		
+	\item
+		La medida invariante es el autovector de autovalor 1 de $Q$.
+		
+		La matriz de transición es:
+		$Q = \begin{bmatrix}
+			0 & 1 & 0 & 0 & 0 \\
+			1/4 & 0 & 3/4 & 0 & 0 \\
+			0 & 1/2 & 0 & 1/2 & 0 \\
+			0 & 0 & 3/4 & 0 & 1/4 \\
+			0 & 0 & 0 & 1 & 0 \\
+		\end{bmatrix}$
+		
+		Y planteando las ecuaciones derivadas de $\pi = \pi Q$ queda que $\pi = (1/16; 1/4; 3/8; 1/4; 1/16)$.
+		
+	\item
+		La matriz de transición es:
+		$$Q(x,y) = \frac{a(x,y)}{\text{gr}(x)}$$
+		Donde $a(u,v)$ vale 1 si hay arista entre $u$ y $v$ y 0 si no, y donde $\text{gr}(x)$ es el grado de $x$.
+		Como el grafo es no dirigido y conexo, el grado nunca es 0.
+		
+		Si a cada nodo le asigno probabilidad $\frac{\text{gr}(x)}{2A}$, siendo $A$ el número de aristas, ocurre que:
+		$$\sum_{x}\frac{\text{gr}(x)}{2A} = \frac{1}{2A} \sum_{x}\text{gr}(x) = \frac{1}{2A} \cdot 2A = 1$$
+		porque la suma de los grados recorre dos veces cada arista (una por cada uno de los vértices que conecta).
+		
+		Entonces es una probabilidad.
+		Además,
+		\begin{align*}
+			P(X_{n+1} = y)	& = \sum_{\{x:(x,y) \in E\}}P(X_n = x) \cdot Q_{x,y}									\\
+							& = \sum_{\{x:(x,y) \in E\}}\frac{\text{gr}(x)}{2A} \cdot \frac{a(x,y)}{\text{gr}(x)}	\\
+							& = \frac{1}{2A}\sum_{\{x:(x,y) \in E\}} a(x,y)											\\
+							& = \frac{\text{gr}(y)}{2A}
+		\end{align*}
+\end{enumerate}
