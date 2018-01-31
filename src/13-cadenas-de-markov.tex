@@ -60,4 +60,23 @@
 							& = \frac{1}{2A}\sum_{\{x:(x,y) \in E\}} a(x,y)											\\
 							& = \frac{\text{gr}(y)}{2A}
 		\end{align*}
+	
+	\item
+		Son dos urnas con $N$ bolitas en total, y en cada paso se elige entre las $N$ bolitas con probabilidad $\frac{1}{N}$ y se la cambia de urna.
+		
+		Ecuaciones de balance (para $0$, para $N$ y para $i/0<i<N$):
+		$$\pi(0) = \frac{\pi(1)}{N}$$
+		$$\pi(N) = \frac{\pi(N-1)}{N}$$
+		$$\pi(i) = \frac{N-i-1}{N}\cdot \pi(i-1) + \frac{i+1}{N}\cdot \pi(i+1)$$
+		
+		Ahora verificamos que una $\text{Bi}(N, 1/2)$ cumple.
+		
+		$$\pi(0) = \binom{N}{0} \frac{1}{2^n} = \frac{1}{N}\cdot N \cdot \frac{1}{2^n} =
+						\frac{1}{N}\cdot \binom{N}{1} \cdot \frac{1}{2^n} = \frac{\pi(1)}{N}$$
+						
+		$$\pi(N) = \binom{N}{N} \frac{1}{2^n} = \frac{1}{N}\cdot N \cdot \frac{1}{2^n} =
+						\frac{1}{N}\cdot \binom{N}{N-1} \cdot \frac{1}{2^n} = \frac{\pi(N-1)}{N}$$
+						
+		$$\pi(i) = \binom{N}{i} \frac{1}{2^N} = (\binom{}{}) \frac{1}{2^N}$$
+		TERMINAR
 \end{enumerate}
