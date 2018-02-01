@@ -67,7 +67,7 @@
 		Ecuaciones de balance (para $0$, para $N$ y para $i/0<i<N$):
 		$$\pi(0) = \frac{\pi(1)}{N}$$
 		$$\pi(N) = \frac{\pi(N-1)}{N}$$
-		$$\pi(i) = \frac{N-i-1}{N}\cdot \pi(i-1) + \frac{i+1}{N}\cdot \pi(i+1)$$
+		$$\pi(i) = \frac{N-i+1}{N}\cdot \pi(i-1) + \frac{i+1}{N}\cdot \pi(i+1)$$
 		
 		Ahora verificamos que una $\text{Bi}(N, 1/2)$ cumple.
 		
@@ -77,6 +77,19 @@
 		$$\pi(N) = \binom{N}{N} \frac{1}{2^n} = \frac{1}{N}\cdot N \cdot \frac{1}{2^n} =
 						\frac{1}{N}\cdot \binom{N}{N-1} \cdot \frac{1}{2^n} = \frac{\pi(N-1)}{N}$$
 						
-		$$\pi(i) = \binom{N}{i} \frac{1}{2^N} = (\binom{}{}) \frac{1}{2^N}$$
-		TERMINAR
+		\begin{align*}
+			\pi(i)	& = \binom{N}{i} \frac{1}{2^N} = \left(\binom{N-1}{i} + \binom{N-1}{i-1}\right) \frac{1}{2^N}						\\
+					& = \left(\frac{(N-1)!}{i!(N-i-1)!} + \frac{(N-1)!}{(i-1)!(N-i)!}\right) \frac{1}{2^N}								\\
+					& = \left(\frac{i+1}{N}\cdot\frac{N!}{(i+1)!(N-i-1)!} + \frac{N-i+1}{N}\cdot\frac{N!}{(i-1)!(N-i+1)!}\right) \frac{1}{2^N}	\\
+					& = \left(\frac{i+1}{N}\binom{N}{i+1} + \frac{N-i+1}{N}\binom{N}{i-1}\right) \frac{1}{2^N}							\\
+					& = \frac{i+1}{N}\binom{N}{i+1}\frac{1}{2^N} + \frac{N-i+1}{N}\binom{N}{i-1}\frac{1}{2^N}							\\
+					& = \frac{i+1}{N}\pi(i+1) + \frac{N-i+1}{N}\pi(i-1)
+		\end{align*}
+	
+	\item
+		
+	\item
+		Tenemos que $\pi = \pi Q$, y que $\pi(0) + \pi(1) = 1$:
+		$$\pi(0) = 0.7\pi(0) + 0.4\pi(1) \Rightarrow \pi(0) = \frac{4}{3}\pi(1)$$
+		Combinado con que suman 1, $$\pi = \left(\frac{4}{7}, \frac{3}{7}\right)$$
 \end{enumerate}
