@@ -1,0 +1,64 @@
+\section{Test de Hipótesis}
+\begin{enumerate}
+	\setcounter{enumi}{119}
+	\item
+		La RC para $T = \sqrt{n}\frac{\overline{X}-\mu_0}{\sigma}$ bajo $H_0$ es $[z_{0.99},+\infty)$
+		
+		Para $\overline X$, es
+		$$\left[\mu_0 + \frac{\sigma z_{0.99}}{\sqrt{n}}, +\infty\right) = \left[30 + \frac{3 z_{0.99}}{4}, +\infty\right) = \left[30 + \frac{3\cdot 0.8389}{4}, +\infty\right) = [30.6292, +\infty)$$
+		
+		Si supongo que $\overline{X} = 31$,
+		$$p= P\left(Z \geq \frac{4(31-30)}{3}\right) = P\left(Z \geq \frac{4}{3}\right) = 1 - 0.9082 = 0.0918$$
+		
+		Como $p > 0.05$ no se rechaza $H_0$. El error de tipo 1 es la probabilidad de rechazar $H_0$ cuando vale $H_0$.
+		
+	\item
+		$RC = [30.6292, +\infty)$ (ver ejercicio anterior)
+		
+		Sea $\mu_1 = 32$. El error de tipo 2 es la probabilidad de no rechazar $H_0$ dado que $\mu = 32$.
+		
+		Bajo $H_1$, se cumple $\sqrt{n}(\overline{X} - \mu_1) / \sigma \sim N(0,1)$.
+		\begin{align*}
+			E	& = P(\text{No rechazo }H_0|H_1)	\\
+				& = P(\overline{X} \leq 30.6292| \mu_1 = 32)	\\
+				& = P_{H_1}\left(\frac{\overline{X}-32}{3/4} \leq \frac{30.6292-32}{3/4}\right)	\\
+				& = P(Z \leq -1.8277)	= 1 - P(Z \geq 1.8277) = 1 - 0.9656 = 0.0344
+		\end{align*}
+		
+	\item
+		Estadístico: $T = \frac{(n-1)s^2}{\sigma_0^2} \sim \chi_{n-1}^2$ bajo $H_0$.
+		
+		$$\chi_{15,0.95}^2 = 7.2609 \Rightarrow \text{RC} = \left[0, \frac{7.2609\cdot \sigma_0^2}{15}\right]$$
+		
+		donde el error de tipo 1 es la probabilidad de rechazar $H_0$ bajo $H_0$.
+		
+	\item
+		\begin{enumerate}
+			\item
+				$H_0: \mu = 250$ y $H_1:  \mu < 250$.
+				$$T = \frac{\overline{X}-\mu_0}{s/\sqrt{n}} = \frac{\overline{X}-250}{2.8/5} = 1.7857(\overline{X}-250) \sim t_{24}$$
+				(bajo $H_0$).
+				
+				$$RC = (-\infty, 250 + t_{24,0.05}\cdot 0.56] = (-\infty, 250 + -1.7109\cdot 0.56] = (-\infty, 249.04]$$
+				
+				Como $249$ cae dentro de la región crítica, se rechaza $H_0$ (existe evidencia para decir que $\mu < 250$).
+			\item
+				$H_0 = \sigma^2 = 4$ y $H_1 = \sigma^2 > 4$.
+				$$T = \frac{(n-1)s^2}{\sigma_0^2} = \frac{24\cdot s^2}{4} = 6s^2 \sim \chi^2_{24}$$ (bajo $H_0$).
+				
+				$$RC = \left[\frac{\chi^2_{24, 0.05}}{6}, +\infty\right) = \left[\frac{36.41}{6}, +\infty\right) = [6.0683, +\infty)$$
+				Como $2.8^2 = 7.84 > 6.0683$, se rechaza $H_0$ (existe evidencia para decir que $\sigma^2 > 4$).
+		\end{enumerate}
+		
+	\item
+		$H_0: \mu = \mu_0$ y $H_1: \mu > \mu_0$.
+		$$T=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}$$
+		Bajo $H_0$, $T$ tiende a comportarse como una $N(0,1)$ para valores grandes de $n$, por TCL.
+		Para $\alpha = 0.05$,
+		$$RC = \left[\mu_0 + \frac{z_{0.95}\cdot s}{\sqrt{n}} , +\infty\right) = \left[\mu_0 + \frac{0.8289\cdot s}{\sqrt{n}}, +\infty\right)$$
+		
+	\item
+		
+	\item
+		
+\end{enumerate}
