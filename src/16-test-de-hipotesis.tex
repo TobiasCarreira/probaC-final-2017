@@ -58,7 +58,34 @@
 		$$RC = \left[\mu_0 + \frac{z_{0.95}\cdot s}{\sqrt{n}} , +\infty\right) = \left[\mu_0 + \frac{0.8289\cdot s}{\sqrt{n}}, +\infty\right)$$
 		
 	\item
+		Supongo que las mediciones siguen una distribución normal, y son de la forma $\mu + \varepsilon_i$. Queremos tener evidencia para decir que la precisión es menor a $0.6$, o sea que:
 		
+		$H_0: \sigma^2 = 0.6^2 = 0.36$ y $H_1: \sigma^2 < 0.36$.
+		
+		$$T = \frac{(n-1)s^2}{\sigma_0^2} = \frac{19\cdot s^2}{0.36} = 52.78 \cdot s^2$$
+		
+		Bajo $H_0$, $T\sim \chi^2_{19}$.
+		
+		$$T_{obs} = 52.78\cdot 0.52^2 = 14.27$$
+		
+		$$RC = \left[0, \frac{\chi^2_{(19, 0.9)\cdot\sigma_0^2}}{n-1}\right] = \left[0, \frac{11.651\cdot 0.52^2}{19}\right] = [0, 0.17]$$
+		
+		Como $0.17 < 0.36$ no se rechaza $H_0$.
 	\item
+		$H_0: \sigma^2 = \sigma_0^2$ y $H_1: \sigma^2 < \sigma_0^2$
 		
+		$T= \frac{(n-1)s^2}{\sigma_0^2}$ que bajo $H_0$ se comporta como $\chi^2_{n-1}$.
+		
+		$$RC = \left[0, \frac{x^2_{n-1, 1-\alpha}\cdot \sigma_0^2}{n-1}\right]$$
+		
+		Ahora la potencia del test.
+		\begin{align*}
+			\text{pot}(\sigma_1^2)	& = P(\text{Rechazo }H_0 | \sigma^2 = \sigma_1^2)								\\
+									& = P_{\sigma^2 = \sigma_1^2}((n-1)s^2 < x^2_{(n-1, 1-\alpha)}\cdot \sigma_0^2)	\\
+									& = P_{\sigma^2 = \sigma_1^2}\left(\frac{(n-1)s^2}{\sigma_1^2} < \frac{x^2_{(n-1, 1-\alpha)}\cdot \sigma_0^2}{\sigma_1^2}\right)
+		\end{align*}
+		
+		Bajo $H_1$, $T_2:= \frac{(n-1)s^2}{\sigma_1^2} \sim \chi^2_{n-1}$
+		
+		$$\text{pot}(\sigma_1^2) = P\left(T_2 < \frac{x^2_{(n-1, 1-\alpha)}\cdot \sigma_0^2}{\sigma_1^2}\right)$$
 \end{enumerate}
