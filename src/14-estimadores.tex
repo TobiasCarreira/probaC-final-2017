@@ -1,0 +1,106 @@
+\section{Estimadores}
+\begin{enumerate}
+	\setcounter{enumi}{100}
+	\item
+		Estimador de momentos, iguala los momentos poblacionales ($E(X^k)$) con los momentos muestrales ($\sum_{i=0}^n\frac{X_i^k}{n}$) y despeja los parámetros buscados.
+		
+		\begin{itemize}
+			\item Exponencial:
+			
+				$E(X) = 1/\lambda$ y el momento muestral es el promedio, así que $\lambda =1/\overline{X}$
+			\item Uniforme$[0,\theta]$:
+				$E(X) = \theta/2$ y el muestral es el promedio. $\theta = 2\overline{X}$
+		\end{itemize}
+	
+	\item
+		Como la esperanza es $0$ se resuelve usando el segundo momento.
+		$$E(X^2) = \int_{-\theta}^{\theta}\frac{1}{2\theta}x^2 = \frac{1}{2\theta} \frac{x^3}{3}\Big|_{-\theta}^{\theta} = \frac{\theta^2}{3}$$
+		
+	\item
+		Sea $X\sim\Gamma(\alpha,\lambda)$.
+		Sabemos que $E(X) = \frac{\alpha}{\lambda}$ y $E(X^2) = V(X) + E(X)^2 = \frac{\alpha}{\lambda^2} + \frac{\alpha^2}{\lambda^2}$.
+		
+		Sea $S = \sum X_i^2 $.
+		$$\overline{X} = E(X) = \frac{\alpha}{\lambda} \Rightarrow \frac{1}{\lambda^2} = \frac{\overline{X}^2}{\alpha^2}$$
+		
+		
+		\begin{align*}
+			\frac{S}{n}	& = E(X^2) = \frac{\alpha}{\lambda^2} + \frac{\alpha^2}{\lambda^2} = \frac{\alpha \overline{X}^2}{\alpha^2} + \frac{\alpha^2 \overline{X}^2}{\alpha^2}	\\
+						& = \frac{\overline{X}^2}{\alpha} + \frac{\alpha \overline{X}^2}{\alpha} = \frac{\overline{X}^2 + \alpha \overline{X}^2}{\alpha}
+		\end{align*}
+		\begin{align*}
+			S								& = \frac{n(\overline{X}^2 + \alpha \overline{X}^2)}{\alpha}	\\
+			\alpha S						& = n\overline{X}^2 + n\alpha \overline{X}^2					\\
+			\alpha (S - n\overline{X}^2)	& = n\overline{X}^2												\\
+			\alpha							& = \frac{n\overline{X}^2}{S - n\overline{X}^2} = \frac{n\overline{X}^2}{\sum X_i^2 - n\overline{X}^2}
+		\end{align*}
+		
+		$$\lambda = \frac{\alpha}{\overline{X}} = \frac{n\overline{X}}{\sum X_i^2 - n\overline{X}^2}$$
+		
+	\item
+		El estimador de máxima verosimilitud es el que maximiza la función de verosimilitud $L$, que es la probabilidad de la muestra obtenida dado el parámetro a estimar.
+		Para encontrar el extremo se deriva e iguala a cero. En general se trabaja con $ln(L)$.
+		
+		\textbf{EMV para la Bernoulli}:
+		\begin{align*}
+			L(p_0)		& = P(\underline{X} = \underline{x} | p=p_0) = \prod_i P(X_i = x_i|p=p_0) = \prod_i p_0^{x_i}(1-p_0)^{1-x_i}	\\
+			l(p_0)		& = \sum_i ln(p_0)\cdot x_i + \sum_i ln(1-p_0)\cdot (1-x_i)		\\
+			l(p_0)		& = ln(p_0)\sum_i x_i + ln(1-p_0) \sum_i(1-x_i)
+		\end{align*}
+		Ahora derivo e igualo a cero:
+		\begin{align*}
+			0 = l(p_0)'	& = \frac{1}{p_0}\sum_i x_i - \frac{1}{1-p_0} \sum_i(1-x_i)		\\
+			\frac{1}{1-p_0} \sum_i(1-x_i)	& = \frac{1}{p_0}\sum_i x_i					\\
+			p_0 \sum_i(1-x_i) 				& = (1-p_0)\sum_i x_i						\\
+			n\cdot p_0 - \sum_i x_i 		& = \sum_i x_i -p_0\sum_i x_i				\\
+			n\cdot p_0 - p_0 \sum_i x_i		& = \sum_i x_i -p_0\sum_i x_i				\\
+			n\cdot p_0						& = \sum_i x_i								\\
+			p_0								& = \overline{X}
+		\end{align*}
+	
+	\item
+		\textbf{EMV para la Exponencial}:
+		\begin{align*}
+			L(\lambda_0)		& = \prod_i \lambda_0 \cdot e^{-\lambda_0 x_i}	\\
+								& = \lambda_0^n \cdot e^{-\lambda_0 \sum_i x_i}	\\
+			l(\lambda_0)		& = ln(\lambda_0^n) -\lambda_0 \sum_i x_i	\\
+			0 = l(\lambda_0)'	& = \frac{1}{\lambda_0^n}\cdot n\cdot \lambda_0^{n-1} - \sum_i x_i	\\
+			0 = l(\lambda_0)'	& = \frac{n}{\lambda_0} - \sum_i x_i
+		\end{align*}
+		
+		Entonces:
+			$$\frac{n}{\lambda_0} = \sum_i x_i \Rightarrow \lambda_0 = \frac{1}{\overline{X}}$$
+			
+	\item
+		\textbf{EMV para la Uniforme [$0,\theta$]}:
+		$$L(\theta_0) = \prod f_{x_i}(x_i|\theta = \theta_0)
+			= \prod_i f_{x_i}(x_i|\theta = \theta_0)
+			= \prod_i \frac{1}{\theta_0} \mathbb{I}_{\{x_i < \theta_0\}}
+			= \frac{1}{\theta_0^n} \prod_i \mathbb{I}_{\{x_i < \theta_0\}}$$
+			
+		Como la función es decreciente, y la indicadora da 1 cuando $\theta_0 \geq max\{x_i\}$, la función se maximiza en $\theta_0 =  max\{x_i\}$.
+		
+	\item
+		El sesgo ($b_{\theta}(\overline{\theta})$) es $E(\overline{\theta}) - \theta$.
+		Algo es insesgado si su sesgo es 0. Algo es asintóticamente insesgado cuando $\lim_{n\rightarrow\infty}b_{\theta}(\overline{\theta}) = 0$.
+		
+		\begin{enumerate}
+			\item Bernoulli: $E(p_0) = E(\sum_i x_i) / n = \sum_i E(x_i) / n = np/n = p$
+			
+			(es insesgado)
+			\item Promedio como estimador de $\mu_X$:
+				$$E(\overline{X}) = \frac{\sum_i E(x_i)}{n} = \frac{\sum_i \mu}{n} = \mu$$ (es insesgado)
+			\item Varianza muestral como estimador de la varianza:
+				\begin{align*}
+					E(\sigma_0^2) 	& = \sum_i \frac{E(X_i - \overline{X})^2}{n} = \sum_i \frac{E(X_i^2 -2\overline{X}X_i + \overline{X}^2)}{n}												\\
+									& = \sum_i \frac{E(X_i^2)}{n} - E\left(\sum_i\frac{2\cdot \overline{X}X_i}{n}\right) + \sum_i\frac{E(\overline{X}^2)}{n}								\\
+									& = \sum_i \frac{V(X_i) + E(X_i)^2}{n} - E\left(2\cdot \overline{X}\frac{\sum_i X_i}{n}\right) + \sum_i\frac{V(\overline{X}) + E(\overline{X})^2}{n}	\\
+									& = \sum_i \frac{\sigma^2 + \mu^2}{n} - E(2\cdot \overline{X}^2) + \sum_i\frac{\sigma^2/n + \mu^2}{n}													\\
+									& = \sigma^2 + \mu^2 - 2\cdot E(\cdot \overline{X}^2) + \frac{\sigma^2}{n} + \mu^2																		\\
+									& = \frac{n+1}{n}\sigma^2 + 2\mu^2 - 2\cdot \left(\frac{\sigma^2}{n} + \mu^2\right) = \frac{n-1}{n}\sigma^2
+				\end{align*}
+				(es asintóticamente insesgado)
+		\end{enumerate}
+		
+	
+\end{enumerate}
