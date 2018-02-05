@@ -102,5 +102,26 @@
 				(es asintóticamente insesgado)
 		\end{enumerate}
 		
-	
+	\setcounter{enumi}{110}
+	\item
+		$$F_T(t) = P(T<t) = P(X < e^t) = F_X(e^t)$$
+		$$f_T(t) = f_X(e^t) \cdot e^t
+			= a\cdot (e^t)^{-(a+1)}\cdot e^t \mathbb{I}_{\{e^t \geq 1\}}
+			= a\cdot e^{-at} e^{-t} \cdot e^t \mathbb{I}_{\{t \geq 0\}}
+			= a\cdot e^{-at} \mathbb{I}_{\{t \geq 0\}}$$
+			
+		Con lo que $T\sim E(a)$.
+		
+		\textbf{Estimador de momentos:}
+		$$\overline{X} = \frac{1}{\hat a} \Rightarrow \hat a = \frac{1}{\overline X}$$
+		
+		\textbf{Estimador de máxima verosimilitud:}
+		\begin{align*}
+			L(\hat a)	& = \prod_i P(X_i = x_i | a = \hat a) = \prod_i \hat a\cdot e^{-\hat a x_i}		\\
+						& = \hat a^n \cdot e^{-\hat a \sum_i x_i}										\\
+			l(\hat a)	& = n\cdot ln(\hat a) - \hat a \sum_i x_i										\\
+			l(\hat a)'	& = \frac{n}{\hat a} - \sum_i x_i
+		\end{align*}
+		Igualo a cero y queda\footnote{Es todo raro porque son la misma función con dos métodos distintos. Se supone que sea así?}:
+		$$\hat a = \frac{1}{\overline X}$$
 \end{enumerate}
