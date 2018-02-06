@@ -102,5 +102,13 @@
 				(es asintóticamente insesgado)
 		\end{enumerate}
 		
-	
+	\item
+		\begin{align*}
+			ECM_{\theta}(\hat\theta)	& = E_{\theta} [(\hat\theta - \theta)^2]						\\
+										& = E_{\theta} [\hat\theta^2 - 2\hat\theta \theta + \theta^2]	\\
+										& = E_{\theta} (\hat\theta^2) - E_{\theta}(2\hat\theta \theta) + E_{\theta}(\theta^2)	\\
+										& = E_{\theta} (\hat\theta^2) - 2\theta E_{\theta}(\hat\theta) + \theta^2	\\
+										& = E_{\theta} (\hat\theta^2) - E_{\theta}(\theta)^2 + E_{\theta}(\theta)^2 - 2\theta E_{\theta}(\hat\theta) + \theta^2	\\
+										& = V_{\theta}(\hat\theta) + (E_{\theta}(\hat\theta)-\theta)^2 = V_{\theta}(\hat\theta) + (b_{\theta}(\hat\theta)^2
+		\end{align*}
 \end{enumerate}
