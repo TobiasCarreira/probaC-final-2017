@@ -156,7 +156,33 @@
 		
 		La consistencia no me sale.
 	\item
+		\begin{align*}
+			L_{\theta}(\hat \theta)		& = \prod_i \left(2\hat \theta x_i e^{-\hat \theta x_i^2}\right)		\\
+										& = (2\hat \theta)^n \prod_i (x_i) e^{-\hat \theta \sum_i x_i^2}			\\
+			l_{\theta}(\hat \theta)		& = n\cdot ln(2\hat \theta) + \sum_i ln(x_i) - \hat \theta \sum_i x_i^2	\\
+			l_{\theta}(\hat \theta)'	& = \frac{n}{\hat \theta} - \sum_i x_i^2
+		\end{align*}
 		
+		Igualo a cero:
+		\begin{align*}
+			\frac{n}{\hat \theta}	& = \sum_i x_i^2	\\
+			\hat \theta				& = \frac{n}{\sum_i x_i^2}
+		\end{align*}
+	
 	\item
-		
+		\textbf{Momentos:}
+			$$\frac{\theta}{2} = \overline{X} \Rightarrow \theta = 2\overline X$$
+			$$b_\theta(2\overline X) = E_\theta(2\overline X) - \theta = 2 \frac{\theta}{2} - \theta = 0$$
+			El estimador de momentos es insesgado.
+			
+		\textbf{EMV:}
+			El EMV es $M=max\{X_i\}$
+			$$F_M(m) = P(M\leq m) = \prod_i \frac{m}{\theta} = \frac{m^n}{\theta^n}$$
+			$$f_M(m) = \frac{n\cdot m^{n-1}}{\theta^n}$$
+			
+			$$E(M) = \int_0^{\theta} m\cdot \frac{n\cdot m^{n-1}}{\theta^n}
+				= \frac{n}{\theta^n} \int_0^{\theta} m^n
+				= \frac{n}{\theta^n} \frac{\theta^{n+1}}{n+1}
+				= \frac{n}{n+1}\theta$$
+			El EMV es asintóticamente insesgado.
 \end{enumerate}
