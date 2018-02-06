@@ -103,6 +103,41 @@
 		\end{enumerate}
 		
 	\item
+		\textbf{Media:}
+		\begin{align*}
+			L(\mu_0)	& = P(\underline X = \underline x|\mu=\mu_0)	\\
+						& = \prod_i \frac{1}{\sqrt{2\pi\sigma^2}} e^{\frac{-(x_i - \mu_0)^2}{2\sigma^2}}		\\
+						& = (2\pi\sigma^2)^{-\frac{n}{2}} \cdot e^{\frac{-\sum_i(x_i - \mu_0)^2}{2\sigma^2}}	\\
+			l(\mu_0)	& = -\frac{n}{2}ln(2\pi\sigma^2) - \frac{\sum_i(x_i - \mu_0)^2}{2\sigma^2}				\\
+			l(\mu_0)'	& = \frac{\sum_i 2(x_i - \mu_0)}{2\sigma^2}	= \frac{\sum_i (x_i - \mu_0)}{\sigma^2}		\\
+		\end{align*}
+		
+		Igualo a cero:
+			$$0 = \frac{\sum_i (x_i - \mu_0)}{\sigma^2}
+				\Rightarrow 0 = \sum_i (x_i - \mu_0)
+				\Rightarrow 0 = \sum_i x_i - n\mu_0
+				\Rightarrow \mu_0 = \overline X$$
+				
+		\textbf{Varianza:}
+		\begin{align*}
+			L(\sigma_0)		& = P(\underline X = \underline x|\sigma=\sigma_0)	\\
+							& = (2\pi\sigma_0^2)^{-\frac{n}{2}} \cdot e^{\frac{-\sum_i(x_i - \mu)^2}{2\sigma_0^2}}	\\
+			l(\sigma_0)		& = -\frac{n}{2}ln(2\pi\sigma_0^2) - \frac{\sum_i(x_i - \mu)^2}{2\sigma_0^2}			\\
+			l(\sigma_0)'	& = -\frac{n}{2}\frac{1}{2\pi\sigma_0^2}\cdot 2\pi + \frac{\sum_i(x_i - \mu)^2}{2}\cdot \frac{1}{(\sigma_0^2)^2}	\\
+			l(\sigma_0)'	& = -\frac{n}{2\sigma_0^2} + \frac{\sum_i(x_i - \mu)^2}{2(\sigma_0^2)^2}
+		\end{align*}
+		
+		Igualo a cero:
+		\begin{align*}
+			0			& = \frac{\sum_i(x_i - \mu)^2}{2(\sigma_0^2)^2} - \frac{n}{2\sigma_0^2}	\\
+			0			& = \frac{\sum_i(x_i - \mu)^2}{\sigma_0^2} - n	\\
+			n			& = \frac{\sum_i(x_i - \mu)^2}{\sigma_0^2}		\\
+			\sigma_0^2	& = \frac{\sum_i(x_i - \mu)^2}{n}
+		\end{align*}
+		
+	\item
+		Está hecho en el 107. Sesgo: $\dfrac{n-1}{n}\sigma^2 - \sigma^2 = -\dfrac{\sigma^2}{n}$.
+	\item
 		\begin{align*}
 			ECM_{\theta}(\hat\theta)	& = E_{\theta} [(\hat\theta - \theta)^2]						\\
 										& = E_{\theta} [\hat\theta^2 - 2\hat\theta \theta + \theta^2]	\\
@@ -111,4 +146,17 @@
 										& = E_{\theta} (\hat\theta^2) - E_{\theta}(\theta)^2 + E_{\theta}(\theta)^2 - 2\theta E_{\theta}(\hat\theta) + \theta^2	\\
 										& = V_{\theta}(\hat\theta) + (E_{\theta}(\hat\theta)-\theta)^2 = V_{\theta}(\hat\theta) + (b_{\theta}(\hat\theta)^2
 		\end{align*}
+		
+	\setcounter{enumi}{111}	
+	\item
+		$$b(\overline X^2) = E(\overline X^2) - \mu^2 = V(\overline X) + E(\overline X)^2 - \mu^2
+			= \frac{\sigma^2}{n} + \mu^2 - \mu^2 = \frac{\sigma^2}{n}$$
+			
+		Es asintóticamente insesgado.
+		
+		La consistencia no me sale.
+	\item
+		
+	\item
+		
 \end{enumerate}
