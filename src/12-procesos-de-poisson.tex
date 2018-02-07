@@ -1,0 +1,42 @@
+\section{Procesos de Poisson}
+\begin{enumerate}
+	\setcounter{enumi}{88}
+	\item
+		$Y_n \sim \Gamma(n, \lambda)$ por ser suma de $\varepsilon(\lambda)$.
+		\begin{align*}
+			N(s) \geq n	& \Longleftrightarrow \{\text{Ocurrieron n o más eventos hasta s}\}			\\
+						& \Longleftrightarrow \{\text{El evento n-ésimo no ocurrió después que s}\}	\\
+						& \Longleftrightarrow Y_n \leq s
+		\end{align*}
+		Por la dualidad Poisson-Gamma, $N(s)\sim P(\lambda s)$.
+	
+	\item
+		Sean $\tilde\tau_1, \cdots, \tilde\tau_n, \cdots$ los tiempos entre eventos consecutivos a partir del tiempo $s$. Sea $\tilde\Y_n = \sum_{i=1}^n \tilde\tau_i$.
+		
+		Dados $N(s) = n$ y $Y_n = u$ tal que $u<s$, tenemos que $\tilde\tau_1 = Y_{n+1}-s$, y que para $i>1$ se cumple $\tilde\tau_i = \tau{n+i}$.
+		
+		Averigüemos la distribución de $\tilde\tau_1$:
+		\begin{align*}
+			P(\tilde\tau_1 > t_1 | N(s)=n \land Y_n = u)	& = P(Y_{n+1} - s > t_1 | Y_{n+1} \geq s \land Y_n = u)						\\
+															& = P(Y_n + \tau_{n+1} - s > t_1 | Y_{n+1} \geq s \land Y_n = u)			\\
+															& = P(\tau_{n+1} > t_1 + (s - u) | \tau_{n+1} + Y_n \geq s \land Y_n = u)	\\
+															& = P(\tau_{n+1} > t_1 + (s - u) | \tau_{n+1} \geq (s - u))					\\
+															& = P(\tau_{n+1} > t_1) = e^{-\lambda t_1}
+		\end{align*}
+		Luego $\tilde\tau_1 \sim \varepsilon(\lambda)$.
+		
+		Para el resto,
+		
+		\begin{align*}
+			P\left(\bigcap_{i=1}^j \tilde\tau_i > t_i | N(s)=n \land Y_n = u\right)	& = P\left(\tilde\tau_1 > t_1 \land \bigcap_{i=2}^j \tilde\tau_i > t_i | N(s)=n \land Y_n = u\right)	\\
+																					& = P\left(\tilde\tau_1 > t_1 \land \bigcap_{i=2}^j \tau_{n+i} > t_i | N(s)=n \land Y_n = u\right)		\\
+																					& = e^{-\lambda t_1} \cdot \prod_{i=2}^j e^{-\lambda t_i} = e^{-\lambda \sum_{i=1}^j t_i}
+		\end{align*}
+		 Hacienmdo esto para cada $j$ se obtiene que $\tilde\tau_i \sim \varepsilon(\lambda)$, por lo que ambos procesos tienen la misma distribución.
+		 
+		 Son independientes porque el cálculo de $\tilde\tau_i$ depende sólo de $Y_{N(s)}$, y vimos que estas son independientes.
+	\item
+		
+	\item
+	\item
+\end{enumerate}
