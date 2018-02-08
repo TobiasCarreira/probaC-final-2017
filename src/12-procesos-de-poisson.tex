@@ -36,7 +36,37 @@
 		 
 		 Son independientes porque el cálculo de $\tilde\tau_i$ depende sólo de $Y_{N(s)}$, y vimos que estas son independientes.
 	\item
+		Sea $N(t) \sim P(\lambda t)$. Sea $T_i$ el tiempo hasta la i-ésima llegada.
 		
+		\begin{align*}
+			F_{T_i}(t_i)	& = P(T_i < t_i) = \sum_{j=i}^{+\infty} \frac{e^{-\lambda t_i}(\lambda t_i)^j}{j!}	\\
+			f_{T_i}(t_i)	& = \sum_{j=i}^{+\infty}\frac{-\lambda e^{-\lambda t_i}(\lambda t_i)^j}{j!} + \sum_{j=i}^{+\infty}\frac{e^{-\lambda t_i}j(\lambda t_i)^{j-1}\lambda}{j!}	\\
+							& = \sum_{j=i}^{+\infty}\frac{e^{-\lambda t_i}t_i^{j-1}\lambda^j}{(j-1)!} - \sum_{j=i}^{+\infty}\frac{e^{-\lambda t_i}t_i^j \lambda^{j+1}}{j!}				\\
+							& = \sum_{j=i}^{+\infty}\frac{e^{-\lambda t_i}t_i^{j-1}\lambda^j}{\Gamma(j)} - \sum_{j=i+1}^{+\infty}\frac{e^{-\lambda t_i}t_i^{j-1}\lambda^j}{\Gamma(j)}	\\
+							& = \frac{e^{-\lambda t_i}t_i^{i-1}\lambda^i}{\Gamma(i)}	\\
+		\end{align*}
+		Entonces $T_i \sim \Gamma(i, \lambda)$.
 	\item
+		$N(t) \sim P(3t) \Rightarrow N(3) \sim P(9)$.
+		\begin{align*}
+			P(N(3) \geq 3)	& = 1 - \sum_{i=0}^2 \frac{e^{-9} \cdot 9^i}{i!}	\\
+							& = 1 - e^{-9}\left(1 + 9 + \frac{81}{2}\right)	\\
+							& = 1 - e^{-9}\cdot\frac{101}{2} = 0.994
+		\end{align*}
 	\item
+		\begin{enumerate}
+			\item Propiedades de un proceso de Poisson:
+				\begin{enumerate}
+					\item $N(t) \sim P(\lambda t)$, $\forall t>0$. 
+					\item Incrementos estacionarios: $N_{t+s} - N_s$ tiene $=$ distribución que $N_t$ (La cantidad de llegadas sólo depende del largo del intervalo).
+					\item Incrementos independientes: Si dos intervalos $[a,b)$ y $[c,d)$ son disjuntos, $N_{b}-N{a}$ y $N_d - N_c$ son VA independientes.
+				\end{enumerate}
+			\item
+				\begin{align*}
+					P(AB)	& = P(A)P(B)					\\
+							& = P(N_3 = 3)P(N_4 - N_3 = 4)	\\
+							& = P(N_3 = 3)P(N_1 = 4)		\\
+							& = \frac{e^{-3\lambda}\cdot(3\lambda)^3}{3!}\cdot \frac{e^{-\lambda}\cdot(\lambda)^4}{4!}
+				\end{align*}
+		\end{enumerate}
 \end{enumerate}
