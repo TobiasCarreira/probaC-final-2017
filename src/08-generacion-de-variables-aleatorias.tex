@@ -1,0 +1,34 @@
+\section{Cadenas de Markov}
+\begin{enumerate}
+	\setcounter{enumi}{66}
+	\item
+	\item
+	\item
+	\item
+	\item
+	\item
+		Sea $A\sim B\left(\frac{f(x)}{c\cdot g(x)}\right)$.
+		$$P(Y_i \leq k | (U_i, Y_i) \in A) = \frac{P(Y_i \leq k \land (U_i, Y_i) \in T)}{P( (U_i, Y_i) \in T)}$$
+		Miramos el numerador y el denominador por separado:
+		\begin{align*}
+			P(Y_i \leq k \land (U_i, Y_i) \in T)	& = P\left(Y_i \leq k \land U_i \leq \frac{f(Y_i)}{c\cdot g(Y_i)}\right)		\\
+									& = \int_{-\infty}^{k}\int_{0}^{\frac{f(y)}{c\cdot g(y)}} f_{Y_i,U_i}(y,u) du\text{ }dy			\\
+									& = \int_{-\infty}^{k}\int_{0}^{\frac{f(y)}{c\cdot g(y)}} f_{Y_i}(y)f_{U_i}(u) du\text{ }dy		\\
+									& = \int_{-\infty}^{k} f_{Y_i}(y) \int_{0}^{\frac{f(y)}{c\cdot g(y)}} f_{U_i}(u) du\text{ }dy	\\
+									& = \int_{-\infty}^{k} g(y)\cdot F_{U_i}\left(\frac{f(y)}{c\cdot g(y)}\right) dy				\\
+									& = \int_{-\infty}^{k} g(y)\cdot \frac{f(y)}{c\cdot g(y)} dy									\\
+									& = \int_{-\infty}^{k} \frac{f(y)}{c} dy = \frac{F_X(k)}{c}
+		\end{align*}
+		El denominador:
+		\begin{align*}
+			P((U_i, Y_i) \in T)	& = P\left(U_i \leq \frac{f(Y_i)}{c\cdot g(Y_i)}\right)	\\
+								& = \int_{-\infty}^{+\infty}\int_{0}^{\frac{f(y)}{c\cdot g(y)}} f_{Y_i,U_i}(y,u) du\text{ }dy		\\
+								& = \int_{-\infty}^{+\infty}\int_{0}^{\frac{f(y)}{c\cdot g(y)}} f_{Y_i}(y)f_{U_i}(u) du\text{ }dy	\\
+								& = \int_{-\infty}^{+\infty}g(y)\cdot F_{U_i}\left(\frac{f(y)}{c\cdot g(y)}\right) dy				\\
+								& = \int_{-\infty}^{+\infty}\frac{f(y)}{c} dy = \frac{1}{c} \int_{-\infty}^{+\infty}f(y) dy	= \frac{1}{c}
+		\end{align*}
+		Combinando ambas expresiones queda:
+		$$P(Y_i \leq k | (U_i, Y_i) \in A) = \frac{F_X(k)}{c} \frac{1}{1/c} = F_X(k)$$
+		En particular vale que $i=T \Rightarrow (U_i, Y_i) \in A$.
+		Entonces $F_T(k) = F_X(k)$.
+\end{enumerate}
