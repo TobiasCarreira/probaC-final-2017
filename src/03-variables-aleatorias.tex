@@ -68,7 +68,14 @@
 		Por lo tanto existe $n_0$ tal que $n>n_0\Rightarrow F_X(x_0 - 1/n_0) \geq a - \epsilon$.
 		Como $F_X$ es creciente, tomando $\delta = 1/n_0$ se obtiene la propiedad. 
 	\item
+		Como la función es continua y biyectiva en $[0,1]$, tiene inversa.
 		
+		Sea $F^{-1}:[0,1]\rightarrow \mathbb{R}$ la inversa.
+		
+		Además sean $U\sim U[0,1]$ y $X = F^{-1}(U)$.
+		$$F_X(x) = P(F^{-1}(U) \leq x) = P(U\leq F(x)) = F(x)$$
+		
+		Luego $F$ es la densidad de $X$.
   % Ej 19 %
 	\item
 		
