@@ -170,12 +170,30 @@
 		$$\hat a = \frac{1}{\overline X}$$
 		
 	\item
+	\textbf{Sesgo:}
 		$$b(\overline X^2) = E(\overline X^2) - \mu^2 = V(\overline X) + E(\overline X)^2 - \mu^2
 			= \frac{\sigma^2}{n} + \mu^2 - \mu^2 = \frac{\sigma^2}{n}$$
 			
 		Es asintóticamente insesgado.
 		
-		La consistencia no me sale.
+		\textbf{Consistencia:}
+		$$V\left(\overline X^2\right) = \frac{1}{n^4} \cdot V\left(\sum X_i\right)^2
+			= \frac{1}{n^4} \cdot V\left(\sum_i \sum_j X_i X_j\right) = \frac{1}{n^4} \cdot \sum_i \sum_j V(X_i X_j)$$
+		
+		Si $i=j$:
+		$$V(X_i^2) = E(X_i^4) - E(X_i^2)^2$$
+		
+		Si $i\neq j$, $X_i$ y $X_j$ son independientes:
+		\begin{align*}
+			V(X_iX_j)	& = E(X_i^2X_j^2) - E(X_iX_j)^2	\\
+						& = E(X_i^2)E(X_j^2) + \text{Cov}(X_i^2,X_j^2) - (\text{Cov}(X_i, X_j) + E(X_i)E(X_j))^2	\\
+						& = E(X_i^2)E(X_j^2) - (E(X_i)E(X_j))^2
+		\end{align*}
+		
+		En ambos casos quedan sumas de momentos de $X_i$, que como son normales son todos finitos.
+		Sea $M$ el máximo resultado de la suma de arriba.
+		$$lim_{n\rightarrow \infty}V\left(\overline X^2\right)\leq lim_{n\rightarrow \infty}\frac{n^2\cdot M}{n^4} = lim_{n\rightarrow \infty}\frac{M}{n^2} = 0$$
+		Luego el estimador es consistente.
 	\item
 		\begin{align*}
 			L_{\theta}(\hat \theta)		& = \prod_i \left(2\hat \theta x_i e^{-\hat \theta x_i^2}\right)		\\
