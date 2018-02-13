@@ -6,8 +6,13 @@
 	\item
 	\item
 	\item
+		\begin{align*}
+			F_X(x)	& = P(X\leq x) = P\left(\frac{-log(1-U)}{\lambda} \leq x\right)	\\
+					& = P\left(1-U \geq e^{-\lambda x}\right)	\\
+					& = P(U \leq 1 - e^{-\lambda x}) = 1 - e^{-\lambda x}
+		\end{align*}
+		Entonces $X\sim \varepsilon(\lambda)$.
 	\item
-		Sea $A\sim B\left(\frac{f(x)}{c\cdot g(x)}\right)$.
 		$$P(Y_i \leq k | (U_i, Y_i) \in A) = \frac{P(Y_i \leq k \land (U_i, Y_i) \in T)}{P( (U_i, Y_i) \in T)}$$
 		Miramos el numerador y el denominador por separado:
 		\begin{align*}
