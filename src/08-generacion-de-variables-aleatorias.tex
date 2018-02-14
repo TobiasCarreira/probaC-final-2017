@@ -2,13 +2,23 @@
 \begin{enumerate}
 	\setcounter{enumi}{66}
 	\item
+        Definición de inversa generalizada ($F^{-1}:[0,1]\rightarrow \mathbb{R}$):
+        $$F^{-1}(u) = \text{inf}\{x:F(x)\geq u\}$$
+
+        Sea $U\sim U[0,1]$. Sea $Y = F_X^{-1}(U)$.
+        $$F_Y(y) = P(F_X^{-1}(U) \leq y) = P(U\leq F_X(y)) = F_X(y)$$
+        Luego $Y\sim X$.
 	\item
 		Sea $U\sim U[0,1]$.
-		
+
 		$X_1 = \mathbb{I}(u\leq p1)$ y $X_2 = \mathbb{I}(u\leq p2)$.
 	\item
-		Sea $U\sim U[0,1]$. $X_i = i\cdot U$.
+		Sea $U\sim U[0,1]$. $X_i = i\cdot U$. Se verifica que son uniformes y además que $X_i \leq X_{i+1}$.
 	\item
+        Sea $U\sim U[0,1]$. $X_k = -log(1-U)k$.
+        $$F_{X_k}(x) = P(-log(1-U)k \leq x) = P(1-U \geq e^{-x/k}) = P(U < 1 - e^{-x/k}) = 1-e^{-x/k}$$
+        Entonces tienen la distribución que se pide. Al mismo tiempo:
+        $$-log(1-U)k \leq -log(1-U)(k+1)$$ porque $-log(1-U) \geq 0$. Luego la sucesión es creciente.
 	\item
 		\begin{align*}
 			F_X(x)	& = P(X\leq x) = P\left(\frac{-log(1-U)}{\lambda} \leq x\right)	\\
