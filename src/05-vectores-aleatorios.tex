@@ -121,15 +121,11 @@
 		$$f_{X+Y}(z) = \int_{-\infty}^{+\infty} f_{X}(u)f_Y(z-u)\text{ }du$$
 		
 	\item
-		Caso discreto:
 		\begin{align*}
-			P(g(X) = x' \land h(Y) = y')	& = \sum_{\{x:(g(x) = x')\}} \sum_{\{y:(h(y) = y')\}} P(X = x \land Y = y)	\\
-											& = \sum_{\{x:(g(x) = x')\}} \sum_{\{y:(h(y) = y')\}} P(X = x) P(Y = y)		\\
-											& = \left(\sum_{\{x:(g(x) = x')\}} P(X = x)\right) \left(\sum_{\{y:(h(y) = y')\}} P(Y = y)\right) \\
-											& = P(g(X) = x') P(h(Y) = y')
+			P(g(X) \in A \land h(Y) \in B)	& = P(X\in\{u:g(u) \in A\} \land Y\in\{v:h(v) \in B\})		\\
+											& = P(X\in\{u:g(u) \in A\})\cdot P(Y\in\{v:h(v) \in B\})	\\
+											& = P(g(X) \in A)\cdot P(h(Y) \in B)
 		\end{align*}
-		
-		FALTA CASO CONTINUO PERO DEBE SER IGUAL, CON MENOR O IGUAL
 		
 	\item
 		Sale haciendo el gráfico $(X,Y)$ y pintando el área que sirve, viendo que la proba de que no se crucen es como integrar un cuadrado de $\frac{5}{6}$ de lado.
@@ -157,7 +153,22 @@
 		Para ver la normalización, sea $Y = X - \mu$. $Y\sim N(0, \sigma^2)$. Luego sea $Z=\frac{Y}{\sigma^2}$. $Z\sim N(0,1)$.
 	
 	\item
-		VER DESPUES
+		Sean $X\sim P(\mu)$ e $Y\sim P(\lambda)$:
+		\begin{enumerate}
+			\item
+				$$M_{X+Y}(t) = M_X(t) M_Y(t) = e^{\mu(e^t-1)}e^{\lambda(e^t-1)} = e^{(\mu+\lambda)(e^t-1)}$$
+				Entonces $X+Y\sim P(\mu+\lambda)$.
+			\item
+				Sea $Z = X+Y$.
+				\begin{align*}
+					p_Z(z)	& = \sum_{i=0}^z p_X(i)p_Y(z-i)	\\
+							& = \sum_{i=0}^z \frac{e^{-\mu}\mu^i}{i!}\frac{e^{-\lambda}\lambda^{z-i}}{(z-i)!}	\\
+							& = e^{-(\mu+\lambda)}\sum_{i=0}^z \frac{\mu^i}{i!}\frac{\lambda^{z-i}}{(z-i)!}		\\
+							& = e^{-(\mu+\lambda)}\sum_{i=0}^z \frac{\mu^i\lambda^{z-i}}{z!} \frac{z!}{i!(z-i)!}		\\
+							& = \frac{e^{-(\mu+\lambda)}}{z!}\sum_{i=0}^z \binom{z}{i}\mu^i\lambda^{z-i} = 	\frac{e^{-(\mu+\lambda)}(\mu+\lambda)^z}{z!}
+				\end{align*}
+				Entonces $Z\sim P(\mu+\lambda)$.
+		\end{enumerate}
 		
 	\item
 		Primero hay que sacar la constante de normalización: se integra sobre todo el dominio y la constante es $\frac{1}{\text{Area}}$ para que la función integre a 1.
