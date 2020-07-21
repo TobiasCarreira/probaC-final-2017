@@ -2,18 +2,35 @@
 \begin{enumerate}
 	\setcounter{enumi}{114}
 	\item
-		TCL: Sea $X_1, \cdots, X_n$ una muestra aleatoria. Entonces se cumple que:
-		$$\frac{\overline X_n - E(\overline X_n)}{\sqrt{V(\overline X_n)}}\xrightarrow[n\rightarrow\infty]{d} N(0,1)$$
-		
-		Para una muestra binomial, $E(\overline X_n) = p$, y $V(\overline X_n) = \frac{p(1-p)}{n}$. Por lo tanto:
-		$$\sqrt{n}\cdot \frac{\overline X_n - p}{\sqrt{p(1-p)}}\xrightarrow[n\rightarrow\infty]{d} N(0,1)$$
+		TCL: Sea $X_1, \cdots, X_n$ i.i.d. de media $\mu$ y varianza $\sigma^2$. Entonces se cumple que:
+
+		$$\frac{\sqrt{n}}{\sigma}(\overline X_n - \mu)\xrightarrow[n\rightarrow\infty]{d} N(0,1)$$
+
+		Utilizando el TCL puede demostrarse que:
+		$$Bi(n,p)\xrightarrow[n\rightarrow\infty]{d} N(np,\sqrt{np(p-1)})$$
+
+		Demostración:
+
+		Dada $X\sim Bi(n,p)$, definamos a las $n$ pruebas independientes que conforman a $X$ como $Y_1, ... , Y_n$, con $Y_i \sim Ber(p)$. Es decir que
+
+		$$\sum_{i=1}^{n}Y_i = X$$
+
+		Como $Y_1, ... , Y_n$ son i.i.d. podemos aplicar el TCL y sabemos que:
+
+		$$Z = \frac{\sqrt{n}}{\sqrt{p(1-p)}}(\frac{1}{n}\sum_{i=1}^{n}Y_i - p)\xrightarrow[n\rightarrow\infty]{d} N(0,1)$$
+
+		Si $Z \xrightarrow{d} N(0,1)$, luego:
+
+		$$Z\sqrt{np(1-p)}+np = \sum_{i=1}^{n}Y_i = X \xrightarrow[n\rightarrow\infty]{d} N(np,\sqrt{np(1-p)})$$
+
 		Para ver cómo se arma el IC ver ej. 116.
+
 	\item
 		Sea $\hat{p_n}$ la proporción de éxitos en la muesta.
 		Sea el pivote $$Z_n = \frac{\hat{p_n} - p}{\sqrt{p(1-p)}}\cdot \sqrt{n}$$
-		
+
 		Por LGN, cuando $n$ es grande, $Z_n\sim N(0,1)$.
-		
+
 		\begin{align*}
 			P(|Z_n| < z_{1-\frac{\alpha}{2}})							& = 1-\alpha	\\
 			P(-z_{1-\frac{\alpha}{2}} < Z_n < z_{1-\frac{\alpha}{2}})	& = 1-\alpha	\\
@@ -22,7 +39,7 @@
 		$$-z_{1-\frac{\alpha}{2}} <  \frac{\hat{p_n} - p}{\sqrt{p(1-p)}}\cdot \sqrt{n} < z_{1-\frac{\alpha}{2}}$$
 		$$-z_{1-\frac{\alpha}{2}}\cdot \frac{\sqrt{p(1-p)}}{\sqrt{n}} <  \hat{p_n} - p < z_{1-\frac{\alpha}{2}}\cdot \frac{\sqrt{p(1-p)}}{\sqrt{n}}$$
 		$$\hat{p_n} - z_{1-\frac{\alpha}{2}}\cdot \frac{\sqrt{p(1-p)}}{\sqrt{n}} < p < \hat{p_n} + z_{1-\frac{\alpha}{2}}\cdot \frac{\sqrt{p(1-p)}}{\sqrt{n}}$$
-		
+
 		Reemplazo $\sqrt{p(1-p)}$ por el peor caso.
 		$$\hat{p_n} - z_{1-\frac{\alpha}{2}}\cdot \frac{1}{2\sqrt{n}} < p < \hat{p_n} + z_{1-\frac{\alpha}{2}}\cdot \frac{1}{2\sqrt{n}}$$
 		Por lo tanto el IC es
@@ -33,17 +50,17 @@
 		Como $X_i\sim E(\lambda)$, $Y_i = 2\lambda X_i \sim E(1/2)$.
 		Entonces:
 		$$2\lambda\sum X_i = \sum Y_i \sim \Gamma(n, 1/2) \sim \chi^2_{2n}$$
-		
+
 		$$P(\chi^2_{2n, 1-\frac{\alpha}{2}} < 2\lambda\sum X_i < \chi^2_{2n, \frac{\alpha}{2}}) = 1 - \alpha$$
 		$$P\left(\frac{\chi^2_{2n, 1-\frac{\alpha}{2}}}{2\sum X_i} < \lambda < \frac{\chi^2_{2n, \frac{\alpha}{2}}}{2\sum X_i}\right) = 1 - \alpha$$
-		
+
 		Entonces el IC es:
 		$$\left[\frac{\chi^2_{2n, 1-\frac{\alpha}{2}}}{2\sum X_i}, \frac{\chi^2_{2n, \frac{\alpha}{2}}}{2\sum X_i}\right]$$
 	\item
 		Sea $X_1, X_2, \cdots, X_n \sim N(\mu, \sigma^2)$ una muestra de variables iid.
 		$$Z_n = \frac{\sqrt{n}(\overline X - \mu)}{\sigma}$$
 		Sabemos que $Z\sim N(0,1)$.
-		
+
 		Luego:
 		\begin{align*}
 			P(z_{\frac{\alpha}{2}} < Z_n < z_{1-\frac{\alpha}{2}})	& = 1 - \alpha	\\
@@ -58,11 +75,11 @@
 	\item
 		Sea $X_1, \cdots, X_n$ una muestra de VA iid con una distribución que depende de un parámetro $\theta$.
 		Supongamos que existe $T(\underline X, \theta)$ función de la muestra y el parámetro que tiene una distribución que no depende de $\theta$.
-		
+
 		Si defino dos valores $a,b$ tales que $P(a \leq T(\underline X, \theta) < b) = 1-\alpha$, puedo construir un IC a partir de estos valores.
-		
+
 		\textbf{Ejemplo:}
-		
+
 		Sean $X_i\sim U[0,\theta]$. Sea $T = \frac{\text{máx}X_i}{\theta}$.
 		Quiero averiguar la distribución de $T$.
 		\begin{align*}
@@ -79,13 +96,13 @@
 		\end{align*}
 		Entonces el IC es:
 		$$\left[\frac{\text{máx}X_i}{b}, \frac{\text{máx}X_i}{a}\right]$$
-		
+
 		Se puede elegir cualquier par $(a,b)$ tal que se cumpla $P(a\leq T \leq b) = 1-\alpha$. O sea, $b^n - a^n = 1 - \alpha$.
-		
+
 		Como criterio, podemos minimizar la longitud esperada del intervalo.
 		$$r = E(\text{máx} X_i) \left(\frac{1}{a} - \frac{1}{b}\right)$$
 		O sea que queremos minimizar $$\frac{1}{a} - \frac{1}{b}$$
-		
+
 		$$b^n - a^n = 1 - \alpha\Rightarrow a = (\alpha - 1 +b^n)^{\frac{1}{n}}$$
 		O sea que hay que minimizar:
 		$$\frac{1}{(\alpha - 1 + b^n)^{\frac{1}{n}}} - \frac{1}{b}$$
