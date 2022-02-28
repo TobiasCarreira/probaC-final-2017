@@ -7,7 +7,7 @@
 		$$\frac{\sqrt{n}}{\sigma}(\overline X_n - \mu)\xrightarrow[n\rightarrow\infty]{d} N(0,1)$$
 
 		Utilizando el TCL puede demostrarse que:
-		$$Bi(n,p)\xrightarrow[n\rightarrow\infty]{d} N(np,\sqrt{np(p-1)})$$
+		$$Bi(n,p)\xrightarrow[n\rightarrow\infty]{d} N(np,np(p-1))$$
 
 		Demostración:
 
@@ -21,7 +21,9 @@
 
 		Si $Z \xrightarrow{d} N(0,1)$, luego:
 
-		$$Z\sqrt{np(1-p)}+np = \sum_{i=1}^{n}Y_i = X \xrightarrow[n\rightarrow\infty]{d} N(np,\sqrt{np(1-p)})$$
+		$$Z\sqrt{np(1-p)}+np = \sum_{i=1}^{n}Y_i = X \xrightarrow[n\rightarrow\infty]{d} N(np,np(1-p))$$
+
+		Porque si $Z \sim N(0,1)$ entonces $\sigma Z + \mu \sim N(\mu , \sigma^2)$
 
 		Para ver cómo se arma el IC ver ej. 116.
 
